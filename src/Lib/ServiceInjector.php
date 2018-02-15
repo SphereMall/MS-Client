@@ -11,6 +11,7 @@ namespace SphereMall\MS\Lib;
 
 use SphereMall\MS\Client;
 use SphereMall\MS\Resources\Documents\DocumentsResource;
+use SphereMall\MS\Resources\Elasticsearch\ElasticsearchResource;
 use SphereMall\MS\Resources\Grapher\CorrelationsResource;
 use SphereMall\MS\Resources\Prices\ProductPriceConfigurationsResource;
 use SphereMall\MS\Resources\Products\AttributeDisplayTypesResource;
@@ -416,6 +417,17 @@ trait ServiceInjector
     {
         /** @var Client $this */
         return new DocumentsResource($this);
+    }
+    #endregion
+
+    #region [Elasticsearch service]
+    /**
+     * @return ElasticsearchResource
+     */
+    public function elasticsearch()
+    {
+        /** @var Client $this */
+        return new ElasticsearchResource($this);
     }
     #endregion
 
