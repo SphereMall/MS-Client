@@ -53,12 +53,12 @@ class ElasticsearchResource extends ElasticResource
 
     #region [Override methods]
     /**
-     * @param bool $mock
+     * @param mixed $mock
      *
      * @return array|int|null|\SphereMall\MS\Entities\Entity|\SphereMall\MS\Lib\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function search(bool $mock = false)
+    public function search($mock = null)
     {
         $response = $this->handler->handle('search', $this->getQueryParams(), $mock);
 
@@ -164,39 +164,6 @@ class ElasticsearchResource extends ElasticResource
         }
 
         return ['response' => $response, 'maker' => $maker, 'makeArray' => $makeArray];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getQueryParams(): array
-    {
-        $params = [
-            'offset' => $this->offset,
-            'limit'  => $this->limit,
-        ];
-
-        if ($this->ids) {
-            $params['ids'] = implode(',', $this->ids);
-        }
-
-        if ($this->fields) {
-            $params['fields'] = implode(',', $this->fields);
-        }
-
-        if ($this->filter) {
-            $params['where'] = (string)$this->filter;
-        }
-
-        if ($this->in) {
-            $params['in'] = json_encode($this->in);
-        }
-
-        if ($this->sort) {
-            $params['sort'] = implode(',', $this->sort);
-        }
-
-        return $params;
     }
     #endregion
 }

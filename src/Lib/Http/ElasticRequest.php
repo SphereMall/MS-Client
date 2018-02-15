@@ -43,24 +43,23 @@ class ElasticRequest
     /**
      * @param string $method
      * @param array  $params
-     * @param bool   $mock
+     * @param mixed  $mock
      *
      * @return ElasticResponse
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function handle(string $method, $params = [], bool $mock = false)
+    public function handle(string $method, $params = [], $mock = null)
     {
         $method = strtolower($method);
         $clientBuilder = new ClientBuilder();
-        if ($mock) {
-
+        if (is_null($mock)) {
+            $clientBuilder->setConnectionParams([
+                'client' => [
+                    'headers' => $this->setAuthorization()
+                ]
+            ]);
         }
-        $clientBuilder->setConnectionParams([
-            'client' => [
-                'headers' => $this->setAuthorization()
-            ]
-        ]);
 
         //Generate request URL
 //        $url = $this->client->getGatewayUrl() . '/' . $this->resource->getVersion() . '/' . $this->resource->getURI();
@@ -68,6 +67,10 @@ class ElasticRequest
         $url = '192.168.53.72:9200';
 
         $clientBuilder->setHosts([$url]);
+        if ($mock) {
+            $clientBuilder->setHosts(['somehost']);
+            $clientBuilder->setHandler($mock);
+        }
         $client = $clientBuilder->build();
         $params = array_merge($params, ['client' => [
             'timeout' => 20,        // second timeout

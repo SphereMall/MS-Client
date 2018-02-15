@@ -29,17 +29,18 @@ abstract class ElasticResource extends Resource
     protected function getQueryParams()
     {
         $params = parent::getQueryParams();
+        $this->params['body']['query'] = ['match_all' => new \stdClass()];
 
         if (empty($params['keyword'])) {
-            return $params;
+            return $this->params;
         }
 
-        $params['body']['query'] = ['query_string' => ['query' => 'Test']];
+        $params['body']['query'] = ['query_string' => ['query' => $params['keyword']]];
         if (!empty($params['offset'])) {
             $this->params['body'] = ['from' => $params['offset']];
         }
         if (!empty($params['limit'])) {
-            $this->params['body'] = ['size' => $params['offset']];
+            $this->params['body'] = ['size' => $params['limit']];
         }
         if (!empty($params['filter'])) {
             $sort = [];
@@ -51,7 +52,7 @@ abstract class ElasticResource extends Resource
             }
         }
 
-        return $params;
+        return $this->params;
     }
     #endregion
 }
