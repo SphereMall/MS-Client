@@ -17,8 +17,8 @@ use SphereMall\MS\Resources\Resource;
 abstract class ElasticResource extends Resource
 {
     protected $params = [
-        'index' => 'sm-products-test',
-        'body'  => ['query' => ['match_all' => []]],
+        'index' => 'sm-*',
+        'body'  => ['query' => ['match_all' => (object)[]]],
     ];
 
     #region [Protected methods]
@@ -29,7 +29,6 @@ abstract class ElasticResource extends Resource
     protected function getQueryParams()
     {
         $params = parent::getQueryParams();
-        $this->params['body']['query'] = ['match_all' => new \stdClass()];
 
         if (empty($params['keyword'])) {
             return $this->params;
