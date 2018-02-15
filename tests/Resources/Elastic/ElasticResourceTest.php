@@ -19,7 +19,7 @@ use SphereMall\MS\Tests\Resources\SetUpResourceTest;
  */
 class ElasticResourceTest extends SetUpResourceTest
 {
-    const MOCK = false;
+    const MOCK = true;
 
     #region [Test methods]
     /**

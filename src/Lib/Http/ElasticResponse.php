@@ -166,9 +166,10 @@ class ElasticResponse extends Response
         }
         foreach ($hits['hits']['hits'] as $hit) {
             $scope = $hit['_source']['scope'] ?? '';
-            if ($scope = json_decode($scope, true)) {
-                $data[$this->getIndexName($hit['_index'])][] = $scope;
+            if (is_string($scope)) {
+                $scope = json_decode($scope, true);
             }
+            $data[$this->getIndexName($hit['_index'])][] = $scope;
         }
 
         return $data;

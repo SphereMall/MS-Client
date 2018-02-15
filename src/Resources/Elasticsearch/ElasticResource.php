@@ -18,7 +18,7 @@ abstract class ElasticResource extends Resource
 {
     protected $params = [
         'index' => 'sm-*',
-        'body'  => ['query' => ['match_all' => (object)[]]],
+        'body'  => ['query' => ['match_all' => []]],
     ];
 
     #region [Protected methods]
@@ -29,6 +29,7 @@ abstract class ElasticResource extends Resource
     protected function getQueryParams()
     {
         $params = parent::getQueryParams();
+        $this->params['body']['query'] = ['match_all' => new \stdClass()];
 
         if (empty($params['keyword'])) {
             return $this->params;
