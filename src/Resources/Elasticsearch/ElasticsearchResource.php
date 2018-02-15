@@ -9,14 +9,9 @@
 namespace SphereMall\MS\Resources\Elasticsearch;
 
 use Exception;
-use SphereMall\MS\Client;
 use SphereMall\MS\Exceptions\MethodNotFoundException;
 use SphereMall\MS\Lib\Http\ElasticRequest;
-use SphereMall\MS\Lib\Http\ElasticResponse;
-use SphereMall\MS\Lib\Http\Response;
 use SphereMall\MS\Lib\Makers\ElasticMaker;
-use SphereMall\MS\Lib\Makers\Maker;
-
 
 /**
  * Class ElasticsearchResource
@@ -33,34 +28,18 @@ class ElasticsearchResource extends ElasticResource
     }
     #endregion
 
-    #region [Constructor]
-    /**
-     * BaseService constructor.
-     *
-     * @param Client $client
-     * @param null $version
-     * @param null $handler
-     * @param null $maker
-     */
-    public function __construct(Client $client, $version = null, $handler = null, $maker = null)
-    {
-        parent::__construct($client, $version, $handler, $maker);
-
-        $this->handler = new ElasticRequest($this->client, $this);
-        $this->maker   = new ElasticMaker();
-    }
-    #endregion
-
     #region [Override methods]
     /**
-     * @param mixed $mock
      *
      * @return array|int|null|\SphereMall\MS\Entities\Entity|\SphereMall\MS\Lib\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function search($mock = null)
+    public function search()
     {
-        $response = $this->handler->handle('search', $this->getQueryParams(), $mock);
+        $this->handler = new ElasticRequest($this->client, $this);
+        $this->maker   = new ElasticMaker();
+
+        $response = $this->handler->handle('search', false, false, $this->getQueryParams());
 
         return $this->make($response, true);
     }
@@ -132,38 +111,6 @@ class ElasticsearchResource extends ElasticResource
     public function all()
     {
         throw new MethodNotFoundException("Method all() can not be use with Elasticsearch");
-    }
-    #endregion
-
-    #region [Protected methods]
-    /**
-     * @param \GuzzleHttp\Promise\Promise|Response|array|ElasticResponse $response
-     * @param bool $makeArray
-     * @param Maker|null $maker
-     *
-     * @return array|int|null|\SphereMall\MS\Entities\Entity|\SphereMall\MS\Lib\Collection
-     */
-    protected function make($response, $makeArray = true, Maker $maker = null)
-    {
-        if (is_null($maker)) {
-            $maker = $this->maker;
-        }
-
-        $maker->setAsCollection($this->meta);
-
-        if ($response instanceof ElasticResponse) {
-            if ($this->client->afterAPICall) {
-                call_user_func($this->client->afterAPICall, $response);
-            }
-
-            if ($makeArray) {
-                return $maker->makeArray($response);
-            }
-
-            return $maker->makeSingle($response);
-        }
-
-        return ['response' => $response, 'maker' => $maker, 'makeArray' => $makeArray];
     }
     #endregion
 }

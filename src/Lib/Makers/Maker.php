@@ -49,4 +49,21 @@ abstract class Maker
         $this->asCollection = $asCollection;
     }
     #endregion
+
+    #region [Protected methods]
+    /**
+     * @param $type
+     *
+     * @return null|string
+     */
+    protected function getMapperClass($type)
+    {
+        $potentialEndpointClass = 'SphereMall\\MS\\Lib\\Mappers\\' . ucfirst($type) . 'Mapper';
+        if (class_exists($potentialEndpointClass)) {
+            return $potentialEndpointClass;
+        }
+
+        return null;
+    }
+    #endregion
 }

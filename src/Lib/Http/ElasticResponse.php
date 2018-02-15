@@ -30,17 +30,6 @@ class ElasticResponse extends Response
     const REPLACE_SUFFIX_TEST = '-test';
     #endregion
 
-    #region [Private Properties]
-    private $statusCode;
-    private $headers;
-    private $data;
-    private $success;
-    private $version;
-    private $errors;
-    private $meta;
-    private $included;
-    #endregion
-
     #region [Protected Properties]
     protected $response;
     #endregion
@@ -86,72 +75,6 @@ class ElasticResponse extends Response
     }
     #endregion
 
-    #region [Getters]
-    /**
-     * @return bool
-     */
-    public function getSuccess()
-    {
-        return $this->success;
-    }
-
-    /**
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * @return array
-     */
-    public function getErrors()
-    {
-        return $this->errors;
-    }
-
-    /**
-     * @return string
-     */
-    public function getErrorMessage()
-    {
-        return json_encode($this->errors);
-    }
-
-    /**
-     * @return string
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
-    /**
-     * @return array
-     */
-    public function getIncluded()
-    {
-        return $this->included;
-    }
-
-    /**
-     * @return int
-     */
-    public function getStatusCode()
-    {
-        return $this->statusCode;
-    }
-
-    /**
-     * @return Meta
-     */
-    public function getMeta()
-    {
-        return $this->meta;
-    }
-    #endregion
-
     #region [Protected Methods]
     /**
      * @param array $hits
@@ -166,10 +89,14 @@ class ElasticResponse extends Response
         }
         foreach ($hits['hits']['hits'] as $hit) {
             $scope = $hit['_source']['scope'] ?? '';
+            if (!$scope) {
+                continue;
+            }
             if (is_string($scope)) {
                 $scope = json_decode($scope, true);
             }
-            $data[$this->getIndexName($hit['_index'])][] = $scope;
+            $scope['type'] = $this->getIndexName($hit['_index']);
+            $data[] = $scope;
         }
 
         return $data;

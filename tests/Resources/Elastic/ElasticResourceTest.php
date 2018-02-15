@@ -9,9 +9,10 @@
 
 namespace SphereMall\MS\Tests\Resources\Elastic;
 
-use GuzzleHttp\Ring\Client\MockHandler;
 use SphereMall\MS\Entities\Entity;
+use SphereMall\MS\Lib\Http\ElasticResponse;
 use SphereMall\MS\Tests\Resources\SetUpResourceTest;
+use SphereMall\MS\Tests\_support\ElasticsearchResource;
 
 /**
  * Class ElasticResourceTest
@@ -19,37 +20,45 @@ use SphereMall\MS\Tests\Resources\SetUpResourceTest;
  */
 class ElasticResourceTest extends SetUpResourceTest
 {
-    const MOCK = true;
+    protected $mockData = null;
+    protected $ids = [9318, 6354, 6329];
+    protected $urlCodes = ['limoen-komkommer-fruitwater', 'versmeergranen-ciabatta-oude-kaas', 'test-document'];
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->mockData = file_get_contents(__DIR__ . '/sm-products.json');
+    }
 
     #region [Test methods]
     /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Exception
      */
-    public function testServiceGetList()
+    public function testElasticResponse()
     {
-        $handler = new MockHandler([
-            'status' => 200,
-            'transfer_stats' => [
-                'total_time' => 100
-            ],
-            'body' => fopen(__DIR__ . '/sm-products.json', 'r')
-        ]);
-        $ids = [9318, 6354, 6329];
-        $urlCodes = ['limoen-komkommer-fruitwater', 'versmeergranen-ciabatta-oude-kaas', 'test-document'];
-
-        if (self::MOCK) {
-            $all = $this->client->elasticsearch()->search($handler);
-        } else {
-            $all = $this->client->elasticsearch()->search();
+        $response = (new ElasticResponse(json_decode($this->mockData, true)))->search();
+        foreach ($response->getData() as $item) {
+            $this->assertTrue(isset($item['id']));
+            $this->assertTrue(isset($item['urlCode']));
+            $this->assertTrue(in_array($item['id'], $this->ids));
+            $this->assertTrue(in_array($item['urlCode'], $this->urlCodes));
         }
-        foreach ($all as $item) {
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testElasticResource()
+    {
+        $response = (new ElasticResponse(json_decode($this->mockData, true)))->search();
+        $items = (new ElasticsearchResource($this->client))->makeTest($response);
+        foreach ($items as $item) {
             $this->assertInstanceOf(Entity::class, $item);
-            if (self::MOCK) {
-                $this->assertTrue(isset($item->id));
-                $this->assertTrue(isset($item->urlCode));
-                $this->assertTrue(in_array($item->id, $ids));
-                $this->assertTrue(in_array($item->urlCode, $urlCodes));
-            }
+            $this->assertTrue(isset($item->id));
+            $this->assertTrue(isset($item->urlCode));
+            $this->assertTrue(in_array($item->id, $this->ids));
+            $this->assertTrue(in_array($item->urlCode, $this->urlCodes));
         }
     }
     #endregion

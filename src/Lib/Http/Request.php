@@ -122,8 +122,9 @@ class Request
     #region [Private methods]
     /**
      * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function setAuthorization()
+    protected function setAuthorization()
     {
         $authToken = new AuthToken($this->client);
         list($token, $userAgent) = $authToken->getTokenData();

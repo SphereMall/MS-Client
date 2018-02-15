@@ -18,48 +18,28 @@ use SphereMall\MS\Resources\Resource as ServiceResource;
  * @property Client $client
  * @property ServiceResource $resource
  */
-class ElasticRequest
+class ElasticRequest extends  Request
 {
-    #region [Properties]
-    protected $client;
-    protected $resource;
-    #endregion
-
-    #region [Constructor]
-    /**
-     * RequestHandler constructor.
-     *
-     * @param Client $client
-     * @param ServiceResource $resource
-     */
-    public function __construct(Client $client, ServiceResource $resource)
-    {
-        $this->client   = $client;
-        $this->resource = $resource;
-    }
-    #endregion
-
     #region [Public methods]
     /**
      * @param string $method
-     * @param array  $params
-     * @param mixed  $mock
+     * @param bool|mixed $body
+     * @param bool $uriAppend
+     * @param array $queryParams
      *
      * @return ElasticResponse
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function handle(string $method, $params = [], $mock = null)
+    public function handle(string $method, $body = false, $uriAppend = false, array $queryParams = [])
     {
         $method = strtolower($method);
         $clientBuilder = new ClientBuilder();
-        if (is_null($mock)) {
-            $clientBuilder->setConnectionParams([
-                'client' => [
-                    'headers' => $this->setAuthorization()
-                ]
-            ]);
-        }
+        $clientBuilder->setConnectionParams([
+            'client' => [
+                'headers' => $this->setAuthorization()
+            ]
+        ]);
 
         //Generate request URL
 //        $url = $this->client->getGatewayUrl() . '/' . $this->resource->getVersion() . '/' . $this->resource->getURI();
@@ -67,12 +47,8 @@ class ElasticRequest
         $url = '192.168.53.72:9200';
 
         $clientBuilder->setHosts([$url]);
-        if ($mock) {
-            $clientBuilder->setHosts(['somehost']);
-            $clientBuilder->setHandler($mock);
-        }
         $client = $clientBuilder->build();
-        $params = array_merge($params, ['client' => [
+        $params = array_merge($queryParams, ['client' => [
             'timeout' => 20,        // second timeout
             'connect_timeout' => 20
         ]]);
@@ -80,25 +56,6 @@ class ElasticRequest
 
         //Return response
         return (new ElasticResponse($response))->$method();
-    }
-    #endregion
-
-    #region [Private methods]
-    /**
-     * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    protected function setAuthorization()
-    {
-        $authToken = new AuthToken($this->client);
-        list($token, $userAgent) = $authToken->getTokenData();
-
-        return [
-            'headers' => [
-                'Authorization' => "Bearer $token",
-                'User-Agent'    => $userAgent,
-            ],
-        ];
     }
     #endregion
 }

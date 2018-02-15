@@ -22,14 +22,14 @@ namespace SphereMall\MS\Lib\Http;
 class Response
 {
     #region [Properties]
-    private $statusCode;
-    private $headers;
-    private $data;
-    private $success;
-    private $version;
-    private $errors;
-    private $meta;
-    private $included;
+    protected $statusCode;
+    protected $headers;
+    protected $data;
+    protected $success;
+    protected $version;
+    protected $errors;
+    protected $meta;
+    protected $included;
     #endregion
 
     #region [Constructor]

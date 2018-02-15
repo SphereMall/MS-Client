@@ -69,21 +69,6 @@ class ElasticMaker extends Maker
 
     #region [Protected methods]
     /**
-     * @param $type
-     *
-     * @return null|string
-     */
-    protected function getMapperClass($type)
-    {
-        $potentialEndpointClass = 'SphereMall\\MS\\Lib\\Mappers\\' . ucfirst($type) . 'Mapper';
-        if (class_exists($potentialEndpointClass)) {
-            return $potentialEndpointClass;
-        }
-
-        return null;
-    }
-
-    /**
      * @param ElasticResponse $response
      *
      * @return array
@@ -93,14 +78,14 @@ class ElasticMaker extends Maker
     {
         $result = [];
 
-        foreach ($response->getData() as $type => $elements) {
-            $mapperClass = $this->getMapperClass($type);
+        foreach ($response->getData() as $element) {
+            $mapperClass = $this->getMapperClass($element['type']);
 
             if (is_null($mapperClass)) {
-                throw new EntityNotFoundException("Entity mapper class for {$type} was not found");
+                throw new EntityNotFoundException("Entity mapper class for {$element['type']} was not found");
             }
 
-            $result = array_merge($result, $this->createObject($mapperClass, $elements));
+            $result[] = $this->createObject($mapperClass, $element);
         }
 
         return $result;
@@ -108,22 +93,18 @@ class ElasticMaker extends Maker
 
     /**
      * @param string $mapperClass
-     * @param array $elements
+     * @param array $element
      *
      * @return mixed
      */
-    protected function createObject(string $mapperClass, array $elements): array
+    protected function createObject(string $mapperClass, array $element)
     {
-        $items = [];
         /**
          * @var Mapper $mapper
          */
         $mapper = new $mapperClass();
-        foreach ($elements as $element) {
-            $items[] = $mapper->createObject($element);
-        }
 
-        return $items;
+        return  $mapper->createObject($element);
     }
     #endregion
 }
