@@ -1,21 +1,80 @@
 {
-  "took": 0,
+  "took": 40,
   "timed_out": false,
   "_shards": {
-    "total": 5,
-    "successful": 5,
+    "total": 98,
+    "successful": 98,
     "skipped": 0,
     "failed": 0
   },
   "hits": {
-    "total": 37,
-    "max_score": 1,
+    "total": 3,
+    "max_score": 2.3215032,
     "hits": [
       {
         "_index": "sm-products",
         "_type": "products",
+        "_id": "6329",
+        "_score": 2.3215032,
+        "_source": {
+          "urlCode": "limoen-komkommer-fruitwater",
+          "title": "test",
+          "functionalNameId": "3",
+          "shortDescription": "Best product",
+          "fullDescription": "Best product in the world",
+          "visible": "1",
+          "brandId": "333",
+          "purchasePrice": "10000",
+          "price": "20000",
+          "oldPrice": "0",
+          "lastUpdate": "2017-11-21 12:12:06",
+          "disable": "0",
+          "isMain": "1",
+          "priceExclVat": "18800",
+          "scope": """{"id":"6329","urlCode":"limoen-komkommer-fruitwater","articleNumber":"","title":"test","useTitleMask":"1","titleMask":"a:2:{s:8:\"settings\";a:3:{s:6:\"change\";s:1:\"0\";s:4:\"date\";s:19:\"2017-05-11 12:40:38\";s:7:\"useMask\";s:1:\"1\";}s:5:\"items\";a:2:{i:0;a:8:{s:2:\"id\";s:3:\"178\";s:5:\"order\";s:1:\"1\";s:5:\"value\";s:11:\"{-VARIANT-}\";s:13:\"showDeleteBtn\";s:1:\"0\";s:4:\"type\";s:1:\"2\";s:7:\"fieldId\";s:4:\"4122\";s:11:\"attributeId\";s:3:\"178\";s:9:\"$$hashKey\";s:12:\"object:10507\";}i:1;a:7:{s:2:\"id\";s:12:\"100000000002\";s:5:\"order\";s:1:\"2\";s:5:\"value\";s:19:\"{-FUNCTIONAL_NAME-}\";s:13:\"showDeleteBtn\";s:1:\"0\";s:4:\"type\";s:1:\"1\";s:7:\"fieldId\";s:4:\"4110\";s:9:\"$$hashKey\";s:12:\"object:10508\";}}}","functionalNameId":"3","shortDescription":"Best product","fullDescription":"Best product in the world","seoTitle":null,"seoDescription":null,"seoKeywords":null,"visible":"1","brandId":"333","purchasePrice":"10000","price":"20000","oldPrice":"0","deliveryProviderId":"3","importedId":"182739","websiteId":"1","lastUpdate":"2017-11-21 12:12:06","disable":"0","isMain":"1","sellingLine":null,"authorizationGroupId":null,"rating":"0.00","reviewAmount":"0","vatId":"2","priceExclVat":"18800","variantsCompound":null,"images":[{"id":"58833","objectId":"6329","title":"image 1 ","imageName":null,"path":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bg_ebikes_2.png","orderNumber":null,"imageTypeId":"1","visible":"1"},{"id":"58837","objectId":"6329","title":"Hello Max","imageName":null,"path":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/image_left_test-old.jpg","orderNumber":null,"imageTypeId":"2","visible":"1"}],"type":"products","productAttributeValues":[{"id":"17","productAttributeValueId":"4891","productId":"6329","value":"flesje","valueTitle":"flesje","attributeId":"9","image":null,"code":"verpaking","title":"verpaking","showInSpecList":"1","description":"","attributeGroupId":"2","valueCssClass":null,"cssClass":null,"useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"5"},{"id":"812","productAttributeValueId":"5025","productId":"6329","value":"ja","valueTitle":"Suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"2607","productAttributeValueId":"5000","productId":"6329","value":"{\"nested\":[{\"id\":\"1074\"}]}","valueTitle":"","attributeId":"1073","image":null,"code":"nested","title":"Nested","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":null,"useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"2744","productAttributeValueId":"5075","productId":"6329","value":"Test test ","valueTitle":"Test test ","attributeId":"1074","image":null,"code":"test-text-area","title":"Test textarea","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"2745","productAttributeValueId":"5079","productId":"6351","value":"fghfghfgh","valueTitle":"fghfghfgh","attributeId":"1075","image":null,"code":"test-html","title":"Test html","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":null,"useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"2747","productAttributeValueId":"5078","productId":"6351","value":"15","valueTitle":"15","attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"}],"functionalNames":[{"id":"3","code":"Fruitwater","title":"Fruitwater test t"}],"brands":[{"id":"333","urlCode":"222","title":"222","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/ENKA%20geschiedenis.png","logo":"","visible":"1"}]}""",
+      "9_attr": [
+      {
+      "id": "9",
+      "valueId": "17"
+      }
+      ],
+      "1067_attr": [
+      {
+      "id": "1067",
+      "valueId": "812"
+      }
+      ],
+      "1073_attr": [
+      {
+      "id": "1073",
+      "valueId": "2607"
+      }
+      ],
+      "1074_attr": [
+      {
+      "id": "1074",
+      "valueId": "2744"
+      }
+      ],
+      "1075_attr": [
+      {
+      "id": "1075",
+      "valueId": "2745"
+      }
+      ],
+      "7_attr": [
+      {
+      "id": "7",
+      "valueId": "2747"
+      }
+      ]
+    }
+    },
+      {
+        "_index": "sm-products",
+        "_type": "products",
         "_id": "6354",
-        "_score": 1,
+        "_score": 1.9382885,
         "_source": {
           "urlCode": "versmeergranen-ciabatta-oude-kaas",
           "title": "Test product",
@@ -31,338 +90,51 @@
           "disable": "0",
           "isMain": "1",
           "priceExclVat": null,
-          "7_attr": {
-            "id": "7",
-            "valueId": "279"
-          },
-          "1066_attr": {
-            "id": "1066",
-            "valueId": "811"
-          },
-          "1068_attr": {
-            "id": "1068",
-            "valueId": "814"
-          },
-          "1067_attr": {
-            "id": "1067",
-            "valueId": "1058"
-          },
-          "scope":  {"urlCode":"versmeergranen-ciabatta-oude-kaas","title":"Test product","functionalNameId":"50","shortDescription":"1","fullDescription":"Meergranen ciabatta uit eigen oven met Jumbo's Roem","visible":"1","brandId":"50","purchasePrice":"5000","price":"6600","oldPrice":"0","lastUpdate":"2017-11-02 12:03:54","disable":"0","isMain":"1","priceExclVat":null,"images":[{"id":"58722","objectId":"6354","title":"Title","imageName":null,"path":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike.png","orderNumber":null,"imageTypeId":"1","visible":"1"},{"id":"58727","objectId":"6354","title":"dsad","imageName":null,"path":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/test\/photo_2016-11-14_09-58-43.jpg","orderNumber":null,"imageTypeId":"1","visible":"1"},{"id":"58729","objectId":"6354","title":"DSADASDASDSA","imageName":null,"path":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bg_ebikes_2.png","orderNumber":null,"imageTypeId":"1","visible":"1"},{"id":"58730","objectId":"6354","title":"dSADASDsd ","imageName":null,"path":null,"orderNumber":null,"imageTypeId":"1","visible":"1"}],"id":"6354","type":"products","brands":[{"id":"50","urlCode":"111","title":"111","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_H.png","logo":"","visible":"1"}],"functionalNames":[{"id":"50","code":"meergranen ciabatta","title":"meergranen ciabatta"}],"productAttributeValues":[{"id":"279","productAttributeValueId":"4660","productId":"6382","value":"1","valueTitle":null,"attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"},{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}]} 
+          "scope": """{"id":"6354","urlCode":"versmeergranen-ciabatta-oude-kaas","articleNumber":"","title":"Test product","useTitleMask":"1","titleMask":null,"functionalNameId":"50","shortDescription":"1","fullDescription":"Meergranen ciabatta uit eigen oven met Jumbo's Roem","seoTitle":"","seoDescription":"","seoKeywords":"","visible":"1","brandId":"50","purchasePrice":"5000","price":"6600","oldPrice":"0","deliveryProviderId":"3","importedId":"187867","websiteId":"1","lastUpdate":"2017-11-02 12:03:54","disable":"0","isMain":"1","sellingLine":null,"authorizationGroupId":null,"rating":"0.00","reviewAmount":"0","vatId":"2","priceExclVat":null,"variantsCompound":"cfc6394f-67da-44ce-9948-a47e4c2a7028","images":[{"id":"58722","objectId":"6354","title":"Title","imageName":null,"path":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike.png","orderNumber":null,"imageTypeId":"1","visible":"1"},{"id":"58727","objectId":"6354","title":"dsad","imageName":null,"path":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/test\/photo_2016-11-14_09-58-43.jpg","orderNumber":null,"imageTypeId":"1","visible":"1"},{"id":"58729","objectId":"6354","title":"DSADASDASDSA","imageName":null,"path":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bg_ebikes_2.png","orderNumber":null,"imageTypeId":"1","visible":"1"},{"id":"58730","objectId":"6354","title":"dSADASDsd ","imageName":null,"path":null,"orderNumber":null,"imageTypeId":"1","visible":"1"}],"type":"products","productAttributeValues":[{"id":"279","productAttributeValueId":"4660","productId":"6382","value":"1","valueTitle":null,"attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"},{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}],"functionalNames":[{"id":"50","code":"meergranen ciabatta","title":"meergranen ciabatta"}],"brands":[{"id":"50","urlCode":"111","title":"111","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_H.png","logo":"","visible":"1"}]}""",
+          "7_attr": [
+            {
+              "id": "7",
+              "valueId": "279"
+            }
+          ],
+          "1066_attr": [
+            {
+              "id": "1066",
+              "valueId": "811"
+            }
+          ],
+          "1068_attr": [
+            {
+              "id": "1068",
+              "valueId": "814"
+            }
+          ],
+          "1067_attr": [
+            {
+              "id": "1067",
+              "valueId": "1058"
+            }
+          ]
         }
       },
       {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6363",
-        "_score": 1,
+        "_index": "sm-document",
+        "_type": "document",
+        "_id": "9318",
+        "_score": 0.2876821,
         "_source": {
-          "urlCode": "verse-warme-broodjes-broodje-omelet-en-pancetta",
-          "title": "Broodje omelet en pancett ",
-          "functionalNameId": "269",
-          "shortDescription": "",
-          "fullDescription": "Huisgemaakt brioche broodje met omelet, kruidenroomkaas en pancetta",
-          "visible": "1",
-          "brandId": "1",
-          "purchasePrice": "0",
-          "price": "300",
-          "oldPrice": "0",
-          "lastUpdate": "2017-12-24 16:23:04",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "7_attr": {
-            "id": "7",
-            "valueId": "279"
-          },
-          "1066_attr": {
-            "id": "1066",
-            "valueId": "811"
-          },
-          "1068_attr": {
-            "id": "1068",
-            "valueId": "814"
-          },
-          "1067_attr": {
-            "id": "1067",
-            "valueId": "1058"
-          },
-          "scope":  {"urlCode":"verse-warme-broodjes-broodje-omelet-en-pancetta","title":"Broodje omelet en pancett ","functionalNameId":"269","shortDescription":"","fullDescription":"Huisgemaakt brioche broodje met omelet, kruidenroomkaas en pancetta","visible":"1","brandId":"1","purchasePrice":"0","price":"300","oldPrice":"0","lastUpdate":"2017-12-24 16:23:04","disable":"0","isMain":"1","priceExclVat":null,"images":[{"id":"58659","objectId":"6363","title":"187995","imageName":"verse-warme-broodjes_187995","path":"\/frontend\/webcontent\/images\/products\/verse-warme-broodjes\/187995(1).jpg","orderNumber":"1","imageTypeId":"1","visible":"1"}],"id":"6363","type":"products","brands":[{"id":"1","urlCode":"111hjfghjhioljkp-yj-dfg-t","title":"Aardvark nl hhh","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_D.png","logo":"#e64aa9","visible":"1"}],"functionalNames":[{"id":"269","code":"Sushi","title":"Sushi"}],"productAttributeValues":[{"id":"279","productAttributeValueId":"4660","productId":"6382","value":"1","valueTitle":null,"attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"},{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}]} 
-        }
-      },
-      {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6365",
-        "_score": 1,
-        "_source": {
-          "urlCode": "tosti-meegranen-mozzarella-tomaat",
-          "title": "Tosti meergranen mozzarella tomaat",
-          "functionalNameId": "130",
-          "shortDescription": null,
-          "fullDescription": "Meergranen tosti met pesto, tomaat, mozzarella en parmenzaanse kaas",
-          "visible": "1",
-          "brandId": "1",
-          "purchasePrice": "0",
-          "price": "350",
-          "oldPrice": "0",
-          "lastUpdate": "2017-05-22 11:35:48",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "7_attr": {
-            "id": "7",
-            "valueId": "279"
-          },
-          "1066_attr": {
-            "id": "1066",
-            "valueId": "811"
-          },
-          "1068_attr": {
-            "id": "1068",
-            "valueId": "814"
-          },
-          "1067_attr": {
-            "id": "1067",
-            "valueId": "1058"
-          },
-          "scope":  {"urlCode":"tosti-meegranen-mozzarella-tomaat","title":"Tosti meergranen mozzarella tomaat","functionalNameId":"130","shortDescription":null,"fullDescription":"Meergranen tosti met pesto, tomaat, mozzarella en parmenzaanse kaas","visible":"1","brandId":"1","purchasePrice":"0","price":"350","oldPrice":"0","lastUpdate":"2017-05-22 11:35:48","disable":"0","isMain":"1","priceExclVat":null,"images":[{"id":"58700","objectId":"6365","title":"187971","imageName":null,"path":"\/frontend\/webcontent\/images\/products\/verse-warme-broodjes\/187971.jpg","orderNumber":"1","imageTypeId":"1","visible":"1"}],"id":"6365","type":"products","brands":[{"id":"1","urlCode":"111hjfghjhioljkp-yj-dfg-t","title":"Aardvark nl hhh","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_D.png","logo":"#e64aa9","visible":"1"}],"functionalNames":[{"id":"130","code":"Tosti meegranen","title":"Tosti meegranen"}],"productAttributeValues":[{"id":"279","productAttributeValueId":"4660","productId":"6382","value":"1","valueTitle":null,"attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"},{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}]} 
-        }
-      },
-      {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6374",
-        "_score": 1,
-        "_source": {
-          "urlCode": "vers-salade-wakame",
-          "title": "Salade wakame",
-          "functionalNameId": "267",
-          "shortDescription": "",
-          "fullDescription": "Wakame zeewiersalade met sesamzaad",
-          "visible": "1",
-          "brandId": "1",
-          "purchasePrice": "0",
-          "price": "249",
-          "oldPrice": "0",
-          "lastUpdate": "2017-05-13 19:10:11",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "1066_attr": {
-            "id": "1066",
-            "valueId": "811"
-          },
-          "1068_attr": {
-            "id": "1068",
-            "valueId": "814"
-          },
-          "1067_attr": {
-            "id": "1067",
-            "valueId": "1058"
-          },
-          "scope":  {"urlCode":"vers-salade-wakame","title":"Salade wakame","functionalNameId":"267","shortDescription":"","fullDescription":"Wakame zeewiersalade met sesamzaad","visible":"1","brandId":"1","purchasePrice":"0","price":"249","oldPrice":"0","lastUpdate":"2017-05-13 19:10:11","disable":"0","isMain":"1","priceExclVat":null,"images":[{"id":"58663","objectId":"6374","title":null,"imageName":"verse-sushi_133593","path":"\/frontend\/webcontent\/images\/products\/verse-sushi\/133593.jpg","orderNumber":"1","imageTypeId":"1","visible":"1"}],"id":"6374","type":"products","brands":[{"id":"1","urlCode":"111hjfghjhioljkp-yj-dfg-t","title":"Aardvark nl hhh","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_D.png","logo":"#e64aa9","visible":"1"}],"functionalNames":[{"id":"267","code":"Salade","title":"Salade"}],"productAttributeValues":[{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}]} 
-        }
-      },
-      {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6380",
-        "_score": 1,
-        "_source": {
-          "urlCode": "vers-sushi-zalm-wasabi-maki",
-          "title": "Sushi zalm wasabi maki",
-          "functionalNameId": "269",
-          "shortDescription": "",
-          "fullDescription": "Maki gevuld met zalm en wasabi ",
-          "visible": "1",
-          "brandId": "1",
-          "purchasePrice": "0",
-          "price": "449",
-          "oldPrice": "0",
-          "lastUpdate": "2017-05-13 19:10:35",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "7_attr": {
-            "id": "7",
-            "valueId": "279"
-          },
-          "1066_attr": {
-            "id": "1066",
-            "valueId": "811"
-          },
-          "1068_attr": {
-            "id": "1068",
-            "valueId": "814"
-          },
-          "1067_attr": {
-            "id": "1067",
-            "valueId": "1058"
-          },
-          "scope":  {"urlCode":"vers-sushi-zalm-wasabi-maki","title":"Sushi zalm wasabi maki","functionalNameId":"269","shortDescription":"","fullDescription":"Maki gevuld met zalm en wasabi ","visible":"1","brandId":"1","purchasePrice":"0","price":"449","oldPrice":"0","lastUpdate":"2017-05-13 19:10:35","disable":"0","isMain":"1","priceExclVat":null,"images":[{"id":"58664","objectId":"6380","title":null,"imageName":"verse-sushi_173901","path":"\/frontend\/webcontent\/images\/products\/verse-sushi\/173901.jpg","orderNumber":"1","imageTypeId":"1","visible":"1"}],"id":"6380","type":"products","brands":[{"id":"1","urlCode":"111hjfghjhioljkp-yj-dfg-t","title":"Aardvark nl hhh","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_D.png","logo":"#e64aa9","visible":"1"}],"functionalNames":[{"id":"269","code":"Sushi","title":"Sushi"}],"productAttributeValues":[{"id":"279","productAttributeValueId":"4660","productId":"6382","value":"1","valueTitle":null,"attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"},{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}]} 
-        }
-      },
-      {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6382",
-        "_score": 1,
-        "_source": {
-          "urlCode": "vers-sushi-teriyaki-kip-maki",
-          "title": "Sushi teriyaki kip maki",
-          "functionalNameId": "269",
-          "shortDescription": null,
-          "fullDescription": "Maki gevuld met teriyaki kip",
-          "visible": "1",
-          "brandId": "1",
-          "purchasePrice": "0",
-          "price": "349",
-          "oldPrice": "0",
-          "lastUpdate": "2017-05-22 11:41:03",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "7_attr": {
-            "id": "7",
-            "valueId": "279"
-          },
-          "1066_attr": {
-            "id": "1066",
-            "valueId": "811"
-          },
-          "1068_attr": {
-            "id": "1068",
-            "valueId": "814"
-          },
-          "1067_attr": {
-            "id": "1067",
-            "valueId": "1058"
-          },
-          "scope":  {"urlCode":"vers-sushi-teriyaki-kip-maki","title":"Sushi teriyaki kip maki","functionalNameId":"269","shortDescription":null,"fullDescription":"Maki gevuld met teriyaki kip","visible":"1","brandId":"1","purchasePrice":"0","price":"349","oldPrice":"0","lastUpdate":"2017-05-22 11:41:03","disable":"0","isMain":"1","priceExclVat":null,"images":[{"id":"58661","objectId":"6382","title":null,"imageName":"verse-sushi_186048","path":"\/frontend\/webcontent\/images\/products\/verse-sushi\/186048.jpg","orderNumber":"1","imageTypeId":"1","visible":"1"},{"id":"58701","objectId":"6382","title":null,"imageName":"verse-sushi_1860482","path":"\/frontend\/webcontent\/images\/products\/verse-sushi\/186048.jpg","orderNumber":"1","imageTypeId":"1","visible":"1"}],"id":"6382","type":"products","brands":[{"id":"1","urlCode":"111hjfghjhioljkp-yj-dfg-t","title":"Aardvark nl hhh","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_D.png","logo":"#e64aa9","visible":"1"}],"functionalNames":[{"id":"269","code":"Sushi","title":"Sushi"}],"productAttributeValues":[{"id":"279","productAttributeValueId":"4660","productId":"6382","value":"1","valueTitle":null,"attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"},{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}]} 
-        }
-      },
-      {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6421",
-        "_score": 1,
-        "_source": {
-          "urlCode": null,
-          "title": null,
-          "functionalNameId": null,
-          "shortDescription": null,
-          "fullDescription": "full Description of car",
-          "visible": "0",
-          "brandId": null,
-          "purchasePrice": "0",
-          "price": "60000",
-          "oldPrice": "0",
-          "lastUpdate": "2018-01-03 09:31:33",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "scope":  {"urlCode":null,"title":null,"functionalNameId":null,"shortDescription":null,"fullDescription":"full Description of car","visible":"0","brandId":null,"purchasePrice":"0","price":"60000","oldPrice":"0","lastUpdate":"2018-01-03 09:31:33","disable":"0","isMain":"1","priceExclVat":null,"id":"6421","type":"products","brands":[null],"functionalNames":[null]} 
-        }
-      },
-      {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6455",
-        "_score": 1,
-        "_source": {
-          "urlCode": null,
-          "title": "NewProduct",
-          "functionalNameId": null,
-          "shortDescription": null,
-          "fullDescription": null,
-          "visible": "0",
-          "brandId": null,
-          "purchasePrice": "0",
-          "price": "0",
-          "oldPrice": "0",
-          "lastUpdate": "2018-01-16 13:07:09",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "scope":  {"urlCode":null,"title":"NewProduct","functionalNameId":null,"shortDescription":null,"fullDescription":null,"visible":"0","brandId":null,"purchasePrice":"0","price":"0","oldPrice":"0","lastUpdate":"2018-01-16 13:07:09","disable":"0","isMain":"1","priceExclVat":null,"id":"6455","type":"products","brands":[null],"functionalNames":[null]} 
-        }
-      },
-      {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6368",
-        "_score": 1,
-        "_source": {
-          "urlCode": "verse-warme-broodjes-tosti-wit-kaas-ham",
-          "title": "Tosti wit kaas ham",
-          "functionalNameId": "131",
-          "shortDescription": "",
-          "fullDescription": "Witte tosti met kruidenroomkaas, kaas en beenham",
-          "visible": "1",
-          "brandId": "1",
-          "purchasePrice": "0",
-          "price": "350",
-          "oldPrice": "0",
-          "lastUpdate": "2017-05-13 19:09:51",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "7_attr": {
-            "id": "7",
-            "valueId": "279"
-          },
-          "1066_attr": {
-            "id": "1066",
-            "valueId": "811"
-          },
-          "1068_attr": {
-            "id": "1068",
-            "valueId": "814"
-          },
-          "1067_attr": {
-            "id": "1067",
-            "valueId": "1058"
-          },
-          "scope":  {"urlCode":"verse-warme-broodjes-tosti-wit-kaas-ham","title":"Tosti wit kaas ham","functionalNameId":"131","shortDescription":"","fullDescription":"Witte tosti met kruidenroomkaas, kaas en beenham","visible":"1","brandId":"1","purchasePrice":"0","price":"350","oldPrice":"0","lastUpdate":"2017-05-13 19:09:51","disable":"0","isMain":"1","priceExclVat":null,"images":[{"id":"58658","objectId":"6368","title":null,"imageName":"verse-warme-broodjes_187980","path":"\/frontend\/webcontent\/images\/products\/verse-warme-broodjes\/187980.jpg","orderNumber":"1","imageTypeId":"1","visible":"1"}],"id":"6368","type":"products","brands":[{"id":"1","urlCode":"111hjfghjhioljkp-yj-dfg-t","title":"Aardvark nl hhh","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_D.png","logo":"#e64aa9","visible":"1"}],"functionalNames":[{"id":"131","code":"Tosti wit","title":"Tosti wit"}],"productAttributeValues":[{"id":"279","productAttributeValueId":"4660","productId":"6382","value":"1","valueTitle":null,"attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"},{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}]} 
-        }
-      },
-      {
-        "_index": "sm-products",
-        "_type": "products",
-        "_id": "6378",
-        "_score": 1,
-        "_source": {
-          "urlCode": "vers-sushi-zalm-nigiri",
-          "title": "Sushi zalm nigiri",
-          "functionalNameId": "269",
-          "shortDescription": "",
-          "fullDescription": "Nigiri met verse zalm ",
-          "visible": "1",
-          "brandId": "1",
-          "purchasePrice": "0",
-          "price": "549",
-          "oldPrice": "0",
-          "lastUpdate": "2017-10-16 11:32:39",
-          "disable": "0",
-          "isMain": "1",
-          "priceExclVat": null,
-          "7_attr": {
-            "id": "7",
-            "valueId": "279"
-          },
-          "1066_attr": {
-            "id": "1066",
-            "valueId": "811"
-          },
-          "1068_attr": {
-            "id": "1068",
-            "valueId": "814"
-          },
-          "1067_attr": {
-            "id": "1067",
-            "valueId": "1058"
-          },
-          "scope":  {"urlCode":"vers-sushi-zalm-nigiri","title":"Sushi zalm nigiri","functionalNameId":"269","shortDescription":"","fullDescription":"Nigiri met verse zalm ","visible":"1","brandId":"1","purchasePrice":"0","price":"549","oldPrice":"0","lastUpdate":"2017-10-16 11:32:39","disable":"0","isMain":"1","priceExclVat":null,"images":[{"id":"58667","objectId":"6378","title":null,"imageName":"verse-sushi_173904","path":"\/frontend\/webcontent\/images\/products\/verse-sushi\/173904.jpg","orderNumber":"1","imageTypeId":"1","visible":"1"}],"id":"6378","type":"products","brands":[{"id":"1","urlCode":"111hjfghjhioljkp-yj-dfg-t","title":"Aardvark nl hhh","image":"http:\/\/defietser.iproaction.net\/frontend\/webcontent\/images\/bike_D.png","logo":"#e64aa9","visible":"1"}],"functionalNames":[{"id":"269","code":"Sushi","title":"Sushi"}],"productAttributeValues":[{"id":"279","productAttributeValueId":"4660","productId":"6382","value":"1","valueTitle":null,"attributeId":"7","image":null,"code":"aantal","title":"Aantal111222","showInSpecList":"1","description":null,"attributeGroupId":"1","valueCssClass":null,"cssClass":"","useInFilter":"1","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":"6"},{"id":"811","productAttributeValueId":"4502","productId":"6399","value":"nee","valueTitle":"Niet glutenvrij","attributeId":"1066","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_2.png","code":"glutenvrij","title":"Glutenvrij","showInSpecList":"1","description":null,"attributeGroupId":"11","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"814","productAttributeValueId":"4504","productId":"6399","value":"nee","valueTitle":"Zout toegevoegd","attributeId":"1068","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_3.png","code":"geen-zout-toegevoegd","title":"Geen zout toegevoegd","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null},{"id":"1058","productAttributeValueId":"4503","productId":"6399","value":"nee","valueTitle":"Niet suikervrij","attributeId":"1067","image":"\/frontend\/webcontent\/images\/attributes\/values\/icon_4.png","code":"suikervrij","title":"Suikervrij","showInSpecList":"1","description":null,"attributeGroupId":"12","valueCssClass":null,"cssClass":null,"useInFilter":"0","orderNumber":null,"valueOrderNumber":null,"unitOfMeasureId":null,"displayType":null}]} 
+          "1076_attr": [
+            {
+              "id": "1076",
+              "valueId": "2939"
+            },
+            {
+              "id": "1076",
+              "valueId": "2775"
+            }
+          ],
+          "title": "test",
+          "functionalNameId": "28"
         }
       }
     ]

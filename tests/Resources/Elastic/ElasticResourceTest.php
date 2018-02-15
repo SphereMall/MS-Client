@@ -9,6 +9,7 @@
 
 namespace SphereMall\MS\Tests\Resources\Elastic;
 
+use SphereMall\MS\Entities\Entity;
 use SphereMall\MS\Tests\Resources\SetUpResourceTest;
 
 /**
@@ -18,16 +19,14 @@ use SphereMall\MS\Tests\Resources\SetUpResourceTest;
 class ElasticResourceTest extends SetUpResourceTest
 {
     #region [Test methods]
-
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function testServiceGetList()
     {
         $all = $this->client->elasticsearch()->search();
-
-        foreach ($all->getData() as $item) {
-            $this->assertArrayHasKey('id', $item);
+        foreach ($all as $item) {
+            $this->assertInstanceOf(Entity::class, $item);
         }
     }
     #endregion

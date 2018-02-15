@@ -23,8 +23,13 @@ namespace SphereMall\MS\Lib\Http;
  *
  * @property array $response
  */
-class ElasticResponse
+class ElasticResponse extends Response
 {
+    #region [constants]
+    const REPLACE_PREFIX      = 'sm-';
+    const REPLACE_SUFFIX_TEST = '-test';
+    #endregion
+
     #region [Private Properties]
     private $statusCode;
     private $headers;
@@ -69,10 +74,8 @@ class ElasticResponse
             $this->success  = !$this->response['timed_out'];
             $this->errors   = $this->response['error'] ?? null;
             $this->version  = 1;
-            $this->included = $this->response['included'] ?? null;
-            if (!empty($this->response['meta'])) {
-                $this->meta = new Meta(...array_values($this->response['meta']));
-            }
+            $this->included = [];
+            $this->meta     = null;
         } catch (\Exception $ex) {
             $this->success = false;
             $this->errors  = $ex->getMessage();
@@ -162,10 +165,27 @@ class ElasticResponse
             return $data;
         }
         foreach ($hits['hits']['hits'] as $hit) {
-            $data[] = array_merge(['id' => ($hit['_id'] ?? 0)], $hit['_source']);
+            $scope = $hit['_source']['scope'] ?? '';
+            if ($scope = json_decode($scope, true)) {
+                $data[$this->getIndexName($hit['_index'])][] = $scope;
+            }
         }
 
         return $data;
+    }
+
+    /**
+     * @param string $index
+     *
+     * @return string
+     */
+    protected function getIndexName(string $index): string
+    {
+        if (!$index) {
+            return 'nonIndex';
+        }
+
+        return str_replace([self::REPLACE_PREFIX, self::REPLACE_SUFFIX_TEST], '', $index);
     }
     #endregion
 }

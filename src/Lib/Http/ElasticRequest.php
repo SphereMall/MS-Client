@@ -42,16 +42,20 @@ class ElasticRequest
     #region [Public methods]
     /**
      * @param string $method
-     * @param array $params
+     * @param array  $params
+     * @param bool   $mock
      *
      * @return ElasticResponse
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function handle(string $method, $params = [])
+    public function handle(string $method, $params = [], bool $mock = false)
     {
         $method = strtolower($method);
         $clientBuilder = new ClientBuilder();
+        if ($mock) {
+
+        }
         $clientBuilder->setConnectionParams([
             'client' => [
                 'headers' => $this->setAuthorization()
