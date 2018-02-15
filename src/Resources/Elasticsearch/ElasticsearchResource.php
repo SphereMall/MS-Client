@@ -12,7 +12,6 @@ use Exception;
 use SphereMall\MS\Client;
 use SphereMall\MS\Exceptions\MethodNotFoundException;
 use SphereMall\MS\Lib\Http\ElasticRequest;
-use SphereMall\MS\Resources\Resource;
 
 /**
  * Class ElasticsearchResource
@@ -20,9 +19,8 @@ use SphereMall\MS\Resources\Resource;
  *
  * @property ElasticRequest $handler
  */
-class ElasticsearchResource extends Resource
+class ElasticsearchResource extends ElasticResource
 {
-
     #region [Override methods]
     public function getURI()
     {
@@ -54,20 +52,7 @@ class ElasticsearchResource extends Resource
      */
     public function search()
     {
-        $params = [
-            'index' => 'sm-products-test',
-            'body' => [
-                'from' => 0,
-                'size' => 10,
-                "query" => [
-                    "query_string" => [
-                        'query' => 'Test'
-                    ]
-                ]
-            ]
-        ];
-
-        return $this->handler->handle('search', $params);
+        return $this->handler->handle('search', $this->params);
     }
 
     /**
