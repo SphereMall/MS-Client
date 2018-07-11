@@ -17,23 +17,23 @@ use SphereMall\MS\Lib\Filters\Interfaces\SearchInterface;
  * @package SphereMall\MS\Lib\Filters\ElasticSearch
  *
  * @property string $keyword
- * @property array  $indexes
- * @property array  $elements
+ * @property array $indexes
+ * @property array $elements
  */
-class FullTextFilter extends Filter
+class MultiFullTextFilter extends Filter
 {
-    protected $fields;
+    public $fields;
     protected $keyword;
-    protected $indexes;
+    protected $index;
     protected $elements;
 
     /**
      * FullTextFilter constructor.
      */
-    public function __construct()
+    public function __construct(array $fields = [])
     {
         parent::__construct();
-        $fieldParams  = new FullTextSearchFieldsParams(['title', 'shortDescription', 'fullDescription']);
+        $fieldParams = new FullTextSearchFieldsParams(empty($fields) ? ['title', 'shortDescription', 'fullDescription'] : $fields);
         $this->fields = $fieldParams->getFields();
     }
 
@@ -41,12 +41,11 @@ class FullTextFilter extends Filter
      * @param array $indexes
      * @return $this
      */
-    public function index(array $indexes)
+    public function index($index)
     {
-        $this->indexes = [];
         /** @var ElasticSearchFilterElement $index */
-        foreach ($indexes as $index) {
-            $this->indexes = array_merge($index->getValues(), $this->indexes);
+        if (is_object($index)) {
+            $this->index = $index->getValues();;
         }
 
         return $this;
@@ -67,7 +66,8 @@ class FullTextFilter extends Filter
      * @param array $elements
      * @return $this
      */
-    public function elements(array $elements){
+    public function elements(array $elements)
+    {
         $this->elements = $elements;
 
         return $this;
@@ -96,34 +96,40 @@ class FullTextFilter extends Filter
      */
     public function __toString()
     {
+        if (count($this->index) == 1) {
+            $index = json_encode(['index' => $this->index[0]]);
+        } else {
+            $index = json_encode(['index' => $this->index]);
+        }
 
         $set = [
-            'index' => implode(',', $this->indexes),
-            'body'  => [
-                'query' => [
-                    'bool' => [
-                        'must' => [
-                            'multi_match' => [
-                                'fields' => $this->fields,
-                            ],
+            'query' => [
+                'bool' => [
+                    'must' => [
+                        'multi_match' => [
+                            'fields' => $this->fields,
                         ],
                     ],
                 ],
             ],
         ];
 
-        if(!empty($this->elements)){
-            foreach ($this->elements as $element){
+        if (!empty($this->keyword)) {
+            $set['query']['bool']['must']['multi_match']['query'] = $this->keyword;
+        }
+
+
+        if (!empty($this->elements)) {
+            foreach ($this->elements as $element) {
                 if ($element instanceof SearchInterface) {
-                    $set['body']['query']['bool']['filter'][] = $element->getValues();
+                    $set['query']['bool']['filter'][] = $element->getValues();
                 }
             }
         }
 
-        if (!empty($this->keyword)) {
-            $set['body']['query']['bool']['must']['multi_match']['query'] = $this->keyword;
-        }
 
-        return json_encode($set);
+        $set = json_encode($set);
+
+        return "{$index}\n{$set}\n";
     }
 }

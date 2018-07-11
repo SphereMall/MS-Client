@@ -8,8 +8,9 @@
 
 namespace SphereMall\MS\Lib\Http;
 
-use Elasticsearch\ClientBuilder;
 use SphereMall\MS\Lib\Helpers\HttpHelper;
+use SphereMall\MS\Elasticsearch\ClientBuilder;
+use SphereMall\MS\Elasticsearch\Serializers\MultiJSONSerializer;
 
 /**
  * Class ElasticSearchRequest
@@ -32,11 +33,15 @@ class ElasticSearchRequest extends Request
         $clientBuilder = new ClientBuilder();
         $url           = HttpHelper::setHttPortToUrl($this->client->getGatewayUrl()) . '/' . $this->resource->getVersion() . '/' . $this->resource->getURI();
         $client = $clientBuilder->setConnectionParams(['client' => ['headers' => $this->setAuthorization()]])
-                                ->setHosts(['host' => $url])
-                                ->build();
+                                ->setHosts(['host' => $url]);
+
+        if(!empty($this->resource->filters)){
+            $client->setSerializer(MultiJSONSerializer::class);
+            $client->multi = true;
+        }
 
         try {
-            $response = new ElasticSearchResponse($client->search($queryParams));
+            $response = new ElasticSearchResponse($client->build()->search($queryParams));
         } catch (\Exception $ex) {
             $error = json_decode($ex->getMessage());
             throw new \Exception($error->error->reason);

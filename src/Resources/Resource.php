@@ -185,6 +185,23 @@ abstract class Resource
     }
 
     /**
+     * Set filters to the resource selecting
+     *
+     * @param array $filters
+     * @return $this
+     */
+    public function filters(array $filters)
+    {
+
+        /** @var MultiFullTextFilter $filter */
+        foreach ($filters AS $filter) {
+            $this->filters[] = $filter;
+        }
+
+        return $this;
+    }
+
+    /**
      * Get current filter
      * @return Filter
      */
@@ -462,6 +479,14 @@ abstract class Resource
                 unset($params['fields']);
             }
             $params['where'] = (string)$this->filter;
+        } elseif (!empty($this->filters)) {
+            foreach ($this->filters AS $filter) {
+                if (method_exists($filter, 'setFields') && sizeof($filter) > 0) {
+                    $filter->setFields($filter->fields);
+                    unset($params['fields']);
+                }
+                $params['where'] .= (string)$filter;
+            }
         }
 
         if ($this->in) {
