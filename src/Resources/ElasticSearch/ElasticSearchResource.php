@@ -101,7 +101,18 @@ class ElasticSearchResource extends Resource
         unset($params['offset']);
         unset($params['limit']);
 
-        $where = $additionalParams ? $additionalParams : json_decode($params['where'], true);
+        $decodeWhere = [];
+        if(stristr($params['where'], "\n") && $multiParams = explode("\n", $params['where'])){
+            foreach ($multiParams  AS $item){
+                if($item){
+                    $decodeWhere['body'][] = json_decode($item, true);
+                }
+            }
+        }else{
+            $decodeWhere = json_decode($params['where'], true);
+        };
+
+        $where = !empty($additionalParams) ? $additionalParams : $decodeWhere;
         if (empty($where)) {
             return $params;
         }
