@@ -39,6 +39,7 @@ use SphereMall\MS\Resources\Products\FunctionalNamesResource;
 use SphereMall\MS\Resources\Products\MediaResource;
 use SphereMall\MS\Resources\Products\ProductAttributeValuesResource;
 use SphereMall\MS\Resources\Products\ProductsResource;
+use SphereMall\MS\Resources\Shop\DealersResource;
 use SphereMall\MS\Resources\Shop\DiscountTypesResource;
 use SphereMall\MS\Resources\Shop\InvoicesResource;
 use SphereMall\MS\Resources\Shop\OrderItemsResource;
@@ -378,6 +379,15 @@ trait ServiceInjector
     {
         /** @var Client $this */
         return new DiscountTypesResource($this);
+    }
+
+    /**
+     * @return DealersResource
+     */
+    public function dealers()
+    {
+        /** @var Client $this */
+        return new DealersResource($this);
     }
     #endregion
 
