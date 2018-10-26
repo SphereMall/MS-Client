@@ -13,6 +13,7 @@ use SphereMall\MS\Entities\Order;
 
 /**
  * Class BasketMapper
+ *
  * @package SphereMall\MS\Lib\Mappers
  */
 class OrdersMapper extends Mapper
@@ -25,13 +26,20 @@ class OrdersMapper extends Mapper
      */
     protected function doCreateObject(array $array)
     {
-        $order = new Order($array);
+        $order = new Order($array['attributes'] ?? $array);
 
-        if (isset($array['items'])) {
-            $orderItemMapper = new OrderItemsMapper();
-            $order->items    = array_map(function ($item) use ($orderItemMapper) {
-                return $orderItemMapper->createObject($item);
-            }, $array['items']);
+        if (isset($array['relationships']['orderItems']) && is_array($array['relationships']['orderItems'])) {
+            $mapper = new OrderItemsMapper();
+            foreach ($array['relationships']['orderItems'] as $item) {
+                $order->items[$item['id']] = $mapper->createObject($item);
+            }
+        }
+
+        if (isset($array['relationships']['paymentMethods']) && is_array($array['relationships']['paymentMethods'])) {
+            $mapper = new PaymentMethodsMapper();
+            foreach ($array['relationships']['paymentMethods'] as $item) {
+                $order->paymentMethods[$item['id']] = $mapper->createObject($item['attributes']);
+            }
         }
 
         return $order;

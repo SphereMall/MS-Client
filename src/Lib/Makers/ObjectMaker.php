@@ -18,6 +18,7 @@ use SphereMall\MS\Lib\Mappers\Mapper;
 
 /**
  * Class ObjectMaker
+ *
  * @package SphereMall\MS\Lib\Makers
  */
 class ObjectMaker extends Maker
@@ -155,13 +156,11 @@ class ObjectMaker extends Maker
      */
     protected function getResultFromResponse(Response $response)
     {
-        $result = [];
-
+        $result   = [];
         $included = $this->getIncludedArray($response->getIncluded());
 
         foreach ($response->getData() as $element) {
             $mapperClass = $this->getMapperClass($element['type']);
-
             if (is_null($mapperClass)) {
                 throw new EntityNotFoundException("Entity mapper class for {$element['type']} was not found");
             }
@@ -178,19 +177,16 @@ class ObjectMaker extends Maker
      * @param $included
      *
      * @return mixed
+     * @throws EntityNotFoundException
      */
     protected function createObject($mapperClass, $element, $included)
     {
         $item      = $this->getAttributes($element);
         $relations = $this->getRelationships($element, $included);
-
-        $item = array_merge($item, $relations);
-        /**
-         * @var Mapper $mapper
-         */
+        /** @var Mapper $mapper */
         $mapper = new $mapperClass();
 
-        return $mapper->createObject($item);
+        return $mapper->createObject(array_merge($item, $relations));
     }
     #endregion
 }

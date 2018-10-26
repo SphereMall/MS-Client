@@ -13,6 +13,7 @@ use SphereMall\MS\Entities\Order;
 use SphereMall\MS\Lib\Makers\OrderHistoryMaker;
 use SphereMall\MS\Lib\Shop\OrderFinalized;
 use SphereMall\MS\Resources\Resource;
+use SphereMall\MS\Resources\Traits\DetailResource;
 
 /**
  * Class OrdersResource
@@ -25,6 +26,8 @@ use SphereMall\MS\Resources\Resource;
  */
 class OrdersResource extends Resource
 {
+    use DetailResource;
+
     #region [Override methods]
     public function getURI()
     {
@@ -36,9 +39,10 @@ class OrdersResource extends Resource
     /**
      * Get full order data by orderId
      *
-     * @param $orderId
+     * @param string $orderId
      *
      * @return null|OrderFinalized
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function byOrderId(string $orderId)
     {
@@ -51,6 +55,7 @@ class OrdersResource extends Resource
      * @param int $id
      *
      * @return null|OrderFinalized
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function byId(int $id)
     {
@@ -67,12 +72,7 @@ class OrdersResource extends Resource
     public function getHistory(int $userId, int $id = null)
     {
         $params = $this->getQueryParams();
-
-        $uriAppend = "history/{$userId}";
-        if (!is_null($id)) {
-            $uriAppend .= "/{$id}";
-        }
-
+        $uriAppend = "history/{$userId}" . (!is_null($id) ? "/{$id}" : '');
         $response = $this->handler->handle('GET', false, $uriAppend, $params);
 
         return $this->make($response, true, new OrderHistoryMaker());

@@ -15,6 +15,7 @@ use SphereMall\MS\Lib\Mappers\OrdersMapper;
 
 /**
  * Class OrderHistoryMaker
+ *
  * @package SphereMall\MS\Lib\Makers
  */
 class OrderHistoryMaker extends ObjectMaker
@@ -28,18 +29,66 @@ class OrderHistoryMaker extends ObjectMaker
      */
     protected function getResultFromResponse(Response $response)
     {
-        $result = [];
-
+        $result   = [];
         $included = $this->getIncludedArray($response->getIncluded());
-
         foreach ($response->getData() as $element) {
-            $mapperClass = $this->getMapperClass($element);
-
-            if (is_null($mapperClass)) {
+            if (is_null($mapperClass = $this->getMapperClass($element))) {
                 throw new EntityNotFoundException("Entity mapper class for {$element['type']} was not found");
             }
-
+            $element  = $this->getRelations($element, $included);
             $result[] = $this->createObject($mapperClass, $element, $included);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param $element
+     * @param $included
+     *
+     * @return mixed
+     */
+    private function getRelations($element, $included)
+    {
+        foreach ($element['relationships'] as $type => $value) {
+            foreach ($value['data'] as $key => $relation) {
+                if (!isset($included[$type][$relation['id']])) {
+                    continue;
+                }
+                $item = $included[$type][$relation['id']];
+                if (count($item['relationships']) > 0) {
+                    $item = $this->getRelations($item, $included);
+                }
+                unset($element['relationships'][$type]['data']);
+                $element['relationships'][$type][$key] = $item;
+            }
+        }
+
+        return $element;
+    }
+
+    /**
+     * @param $mapperClass
+     * @param $element
+     * @param $included
+     *
+     * @return mixed
+     */
+    protected function createObject($mapperClass, $element, $included)
+    {
+        return (new $mapperClass)->createObject($element);
+    }
+
+    /**
+     * @param array $included
+     *
+     * @return array
+     */
+    protected function getIncludedArray(array $included)
+    {
+        $result = [];
+        foreach ($included as $include) {
+            $result[$include['type']][$include['id']] = $include;
         }
 
         return $result;

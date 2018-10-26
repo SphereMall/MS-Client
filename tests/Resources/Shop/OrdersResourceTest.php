@@ -9,7 +9,6 @@
 
 namespace SphereMall\MS\Tests\Resources\Shop;
 
-use SphereMall\MS\Entities\DeliveryProvider;
 use SphereMall\MS\Entities\Order;
 use SphereMall\MS\Tests\Resources\SetUpResourceTest;
 
@@ -26,38 +25,29 @@ class OrdersResourceTest extends SetUpResourceTest
 
     public function testGetOrderById()
     {
-        $order = $this->client->orders()
-            ->filter(['statusId' => ['e' => 2]])
-            ->first();
-
+        $order = $this->client->orders()->filter(['statusId' => ['e' => 2]])->first();
         $orderNew = $this->client->orders()->byId($order->id);
         $this->assertEquals($order->id, $orderNew->getId());
     }
 
     public function testUpdateOrder()
     {
-        $order1 = $this->client->orders()
-            ->filter(['statusId' => ['e' => 2]])
-            ->first();
-
+        $order1 = $this->client->orders()->filter(['statusId' => ['e' => 2]])->first();
         $order2 = $this->client->orders()->byId($order1->id);
-
         $items = $order2->items;
-
         $order2->update(['paymentStatusId' => 2]);
-
         $this->assertEquals(2, $order2->getPaymentStatusId());
         $this->assertEquals($items, $order2->items);
     }
 
     public function testOrderHistory()
     {
-        $all = $this->client->orders()->getHistory(227);
-
+        $all = $this->client->orders()->getHistory(2231);
         foreach ($all as $item) {
-            $this->assertEquals(227, $item->userId);
+            $this->assertEquals(2231, $item->userId);
             $this->assertInstanceOf(Order::class, $item);
         }
     }
     #endregion
 }
+

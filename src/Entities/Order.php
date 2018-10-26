@@ -11,32 +11,35 @@ namespace SphereMall\MS\Entities;
 
 /**
  * Class Order
+ *
  * @package SphereMall\MS\Entities
- * @property int $id
- * @property string $orderId
- * @property int $userId
- * @property int $statusId
- * @property int $paymentStatusId
- * @property int $paymentId
- * @property int $itemsAmount
- * @property int $deliveryProviderId
- * @property int $paymentMethodId
- * @property int $shippingAddressId
- * @property int $billingAddressId
- * @property string $deliveryTime
- * @property int $deliveryStatusId
- * @property int $currency
- * @property string $additionalInfo
- * @property string $orderComment
- * @property int $deliveryCost
- * @property int $subTotalVatPrice
- * @property int $totalVatPrice
- * @property int $subTotalPrice
- * @property int $totalPrice
- * @property int $totalPriceWithoutDelivery
- * @property OrderItem[] $items
- * @property string $createDate
- * @property string $updateDate
+ * @property int             $id
+ * @property string          $orderId
+ * @property int             $userId
+ * @property int             $statusId
+ * @property int             $paymentStatusId
+ * @property int             $paymentId
+ * @property int             $itemsAmount
+ * @property int             $deliveryProviderId
+ * @property int             $paymentMethodId
+ * @property int             $shippingAddressId
+ * @property int             $billingAddressId
+ * @property string          $deliveryTime
+ * @property int             $deliveryStatusId
+ * @property int             $currency
+ * @property string          $additionalInfo
+ * @property string          $orderComment
+ * @property int             $deliveryCost
+ * @property int             $subTotalVatPrice
+ * @property int             $totalVatPrice
+ * @property int             $subTotalPrice
+ * @property int             $totalPrice
+ * @property int             $totalPriceWithoutDelivery
+ * @property string          $createDate
+ * @property string          $updateDate
+ *
+ * @property OrderItem[]     $items
+ * @property PaymentMethod[] $paymentMethods
  */
 class Order extends Entity
 {
@@ -57,17 +60,16 @@ class Order extends Entity
     public $currency;
     public $additionalInfo;
     public $orderComment;
-
     public $deliveryCost;
     public $subTotalVatPrice;
     public $totalVatPrice;
     public $subTotalPrice;
     public $totalPrice;
     public $totalPriceWithoutDelivery;
-
-    public $items = [];
-
     public $createDate;
     public $updateDate;
+
+    public $items          = [];
+    public $paymentMethods = [];
     #endregion
 }
