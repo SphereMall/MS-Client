@@ -56,7 +56,7 @@ class Response
             $this->status  = $contents['status'];
             $this->errors   = $contents['errors'] ?? null;
             $this->debug   = $contents['debug'] ?? null;
-            $this->version  = $contents['ver'];
+            $this->version  = $contents['ver'] ?? $contents['version'] ?? null;
             $this->included = $contents['included'] ?? [];
             if (!empty($contents['meta'])) {
                 $this->meta = new Meta(...array_values($contents['meta']));

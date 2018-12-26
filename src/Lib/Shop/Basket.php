@@ -64,7 +64,7 @@ class Basket extends OrderFinalized
         }
 
         $this->callResourceAction(function ($params) {
-            return $this->client->basketResource()
+            return $this->client->basketResource($this->version)
                                 ->create($params);
         }, $params);
     }
@@ -79,7 +79,7 @@ class Basket extends OrderFinalized
         }
 
         $this->callResourceAction(function ($params) {
-            return $this->client->basketResource()
+            return $this->client->basketResource($this->version)
                                 ->removeItems($params);
         }, $params);
     }
@@ -98,7 +98,7 @@ class Basket extends OrderFinalized
         $params = array_merge($params, $this->updateParams);
 
         $this->callResourceAction(function ($params) {
-            return $this->client->basketResource()
+            return $this->client->basketResource($this->version)
                                 ->update($this->getId(), $params);
         }, $params);
 
@@ -185,7 +185,7 @@ class Basket extends OrderFinalized
     protected function createBasket()
     {
         /**@var Order $order */
-        $order    = $this->client->basketResource()
+        $order    = $this->client->basketResource($this->version)
                                  ->new([]);
         $this->id = $order->id;
     }

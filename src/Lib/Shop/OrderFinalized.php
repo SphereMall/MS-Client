@@ -115,11 +115,11 @@ class OrderFinalized
 
         //Update current order with params
         $order = $this->client
-            ->orders()
+            ->orders($this->client->getVersion())
             ->update($this->getId(), $params);
 
         //Get order by current orderId with items
-        $orderWithItems = $this->client->orders()->byId($this->getId());
+        $orderWithItems = $this->client->orders($this->client->getVersion())->byId($this->getId());
         $order->items = $orderWithItems->items;
 
         //Set data to current order
@@ -137,7 +137,7 @@ class OrderFinalized
         }
 
         $order = $this->client
-            ->basketResource()
+            ->basketResource($this->client->getVersion())
             ->copy($orderId);
 
         if (!$order) {

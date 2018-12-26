@@ -99,7 +99,7 @@ class AuthToken
                 $isGuest = $response->getData()[0]['isGuest'] ?? true;
                 if ($isGuest) {
                     try {
-                        setcookie(AuthToken::GUEST_COOKIE_NAME, $this->token, time() + $expiries, '/', '',
+                        setcookie(AuthToken::GUEST_COOKIE_NAME, $this->token, $expiries, '/', '',
                             !empty($_SERVER['HTTPS']), true);
                     } catch (\Exception $ex) {
                         //TODO: Can not set cookies with unit tests

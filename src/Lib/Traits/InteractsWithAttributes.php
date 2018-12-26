@@ -80,6 +80,27 @@ trait InteractsWithAttributes
     }
 
     /**
+     * The method should get rid of addition conditions in templates
+     *
+     * @param string $code
+     * @param bool $asTitle By default we should display always Title field,
+     * but it should be also possible to use value
+     * @return string|null
+     */
+    public function getFirstValueByAttributeCodeAsString(string $code, $asTitle = true)
+    {
+        $attributeValue = $this->getFirstValueByAttributeCode($code);
+
+        if (!$attributeValue) {
+            return "";
+        }
+
+        $field = $asTitle ? 'title' : 'value';
+
+        return $attributeValue->$field;
+    }
+
+    /**
      * @param Attribute[] $attributes
      */
     public function setAttributes(array $attributes)

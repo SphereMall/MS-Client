@@ -115,21 +115,27 @@ class ProductsMapper extends Mapper
      */
     private function setOptions()
     {
-        if (isset($this->data['options']) && is_array($this->data['options'])) {
-            $optionMapper              = new OptionsMapper();
-            $productOptionValuesMapper = new ProductOptionValuesMapper();
-            $options                   = [];
-            foreach ($this->data['options'] as $option) {
-                $productOptionValues = array_filter($this->data['productOptionValues'] ?? [], function ($productOptionValue) use ($option) {
-                    return $option['id'] == $productOptionValue['optionId'];
-                });
-                foreach ($productOptionValues ?? [] as $productOptionValue) {
-                    $option['values'][] = $productOptionValuesMapper->createObject($productOptionValue);
-                }
-                $options[] = $optionMapper->createObject($option);
-            }
-            $this->product->options = $options;
+        if (!isset($this->data['options']) || !is_array($this->data['options'])) {
+            return $this;
         }
+
+        $optionMapper              = new OptionsMapper();
+        $productOptionValuesMapper = new ProductOptionValuesMapper();
+        $options                   = [];
+        foreach ($this->data['options'] as $option) {
+            $option = $option['attributes'] ?? $option;
+
+            $productOptionValues = array_filter($this->data['productOptionValues'] ?? [], function ($productOptionValue) use ($option) {
+                $optionId = $productOptionValue['optionId'] ?? $productOptionValue['attributes']['optionId'];
+                return $option['id'] == $optionId;
+            });
+
+            foreach ($productOptionValues ?? [] as $productOptionValue) {
+                $option['values'][] = $productOptionValuesMapper->createObject($productOptionValue);
+            }
+            $options[] = $optionMapper->createObject($option);
+        }
+        $this->product->options = $options;
 
         return $this;
     }

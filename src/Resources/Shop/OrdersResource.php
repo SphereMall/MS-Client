@@ -10,6 +10,7 @@
 namespace SphereMall\MS\Resources\Shop;
 
 use SphereMall\MS\Entities\Order;
+use SphereMall\MS\Lib\Makers\ObjectMaker;
 use SphereMall\MS\Lib\Makers\OrdersMaker;
 use SphereMall\MS\Lib\Shop\OrderFinalized;
 use SphereMall\MS\Resources\Resource;
@@ -91,10 +92,12 @@ class OrdersResource extends Resource
         $params   = $this->getQueryParams();
         $response = $this->handler->handle('GET', false, $uriAppend, $params);
 
-        $orderCollection = $this->make($response);
-        if ($orderCollection) {
+        if ($response->getData()) {
+            $maker = empty($response->getData()[0]['relationships']) ? new ObjectMaker() : new OrdersMaker();
+            /** @var $order Order */
+            $order = $this->make($response, false, $maker);
             $orderFinalized = new OrderFinalized($this->client);
-            $orderFinalized->setOrderData($orderCollection[0]);
+            $orderFinalized->setOrderData($order);
 
             return $orderFinalized;
         }
