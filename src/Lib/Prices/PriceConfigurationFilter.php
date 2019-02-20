@@ -71,5 +71,9 @@ class PriceConfigurationFilter
         return ['filters' => json_encode($data)];
     }
 
+    public function __get($property)
+    {
+        return $this->$property;
+    }
     #endregion
 }

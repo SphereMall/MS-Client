@@ -109,13 +109,28 @@ trait InteractsWithAttributes
 
         $this->sortAttributes();
     }
+
+    /**
+     * @param array $codes
+     * @return array
+     */
+    public function getAttributeValuesByCodes(array $codes)
+    {
+        $attributes = $this->getAttributesByCodes($codes);
+
+        foreach ($attributes as $attribute) {
+            $attributeValues[$attribute->id] = $attribute->values;
+        }
+
+        return $attributeValues ?? [];
+    }
+
     #endregion
 
     #region [Protected methods]
     /**
      * @param string $fieldName
      * @param $value
-     *
      * @return null|Attribute
      */
     protected function getAttributeByFieldNameAndValue(string $fieldName, $value)
