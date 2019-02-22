@@ -9,14 +9,14 @@
 namespace SphereMall\MS\Lib\Queries\Elastic;
 
 
-use SphereMall\MS\Lib\Filters\Interfaces\ElasticFilterInterface;
+use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
 
 /**
  * Class WildCardQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class WildCardQuery extends BasicQuery implements ElasticFilterInterface
+class WildCardQuery extends BasicQuery implements ElasticQueryInterface
 {
     private $field = null;
     private $value = null;

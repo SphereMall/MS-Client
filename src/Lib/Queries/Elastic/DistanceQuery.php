@@ -10,14 +10,14 @@ namespace SphereMall\MS\Lib\Queries\Elastic;
 
 
 use SphereMall\MS\Lib\Filters\GeoDistanceUnits;
-use SphereMall\MS\Lib\Filters\Interfaces\ElasticFilterInterface;
+use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
 
 /**
  * Class DistanceFilter
  *
  * @package SphereMall\MS\Lib\Filters\Elastic
  */
-class DistanceQuery extends BasicQuery implements ElasticFilterInterface
+class DistanceQuery extends BasicQuery implements ElasticQueryInterface
 {
     private $lat          = null;
     private $lon          = null;

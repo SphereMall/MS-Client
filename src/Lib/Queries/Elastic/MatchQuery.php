@@ -9,14 +9,15 @@
 namespace SphereMall\MS\Lib\Queries\Elastic;
 
 
-use SphereMall\MS\Lib\Filters\Interfaces\ElasticFilterInterface;
+
+use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
 
 /**
  * Class MatchQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class MatchQuery extends BasicQuery implements ElasticFilterInterface
+class MatchQuery extends BasicQuery implements ElasticQueryInterface
 {
     private $query    = null;
     private $field    = null;

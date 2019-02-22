@@ -9,14 +9,14 @@
 namespace SphereMall\MS\Lib\Queries\Elastic;
 
 
-use SphereMall\MS\Lib\Filters\Interfaces\ElasticFilterInterface;
+use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
 
 /**
  * Class RegexpFilter
  *
  * @package SphereMall\MS\Lib\Filters\Elastic
  */
-class RegexpQuery extends BasicQuery implements ElasticFilterInterface
+class RegexpQuery extends BasicQuery implements ElasticQueryInterface
 {
     private $value = null;
     private $field = null;

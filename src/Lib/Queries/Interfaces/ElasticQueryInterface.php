@@ -6,14 +6,14 @@
  * Time: 16:46
  */
 
-namespace SphereMall\MS\Lib\Filters\Interfaces;
+namespace SphereMall\MS\Lib\Queries\Interfaces;
 
 /**
  * Interface ElasticFilterInterface
  *
  * @package SphereMall\MS\Lib\Filters\Interfaces
  */
-interface ElasticFilterInterface
+interface ElasticQueryInterface
 {
     /**
      * @return array

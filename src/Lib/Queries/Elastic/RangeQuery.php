@@ -9,14 +9,14 @@
 namespace SphereMall\MS\Lib\Queries\Elastic;
 
 
-use SphereMall\MS\Lib\Filters\Interfaces\ElasticFilterInterface;
+use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
 
 /**
  * Class RangeQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class RangeQuery extends BasicQuery implements ElasticFilterInterface
+class RangeQuery extends BasicQuery implements ElasticQueryInterface
 {
     private $field = null;
     private $range = [];

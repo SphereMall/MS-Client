@@ -9,14 +9,14 @@
 namespace SphereMall\MS\Lib\Queries\Elastic;
 
 
-use SphereMall\MS\Lib\Filters\Interfaces\ElasticFilterInterface;
+use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
 
 /**
  * Class TermsQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class TermsQuery extends BasicQuery implements ElasticFilterInterface
+class TermsQuery extends BasicQuery implements ElasticQueryInterface
 {
 
     private $field  = null;
