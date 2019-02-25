@@ -6,17 +6,14 @@
  * Time: 16:46
  */
 
-namespace SphereMall\MS\Lib\Queries\Interfaces;
+namespace SphereMall\MS\Lib\Elastic\Interfaces;
 
 /**
  * Interface ElasticFilterInterface
  *
  * @package SphereMall\MS\Lib\Filters\Interfaces
  */
-interface ElasticQueryInterface
+interface ElasticBoolQueryInterface
 {
-    /**
-     * @return array
-     */
-    public function toArray(): array;
+
 }

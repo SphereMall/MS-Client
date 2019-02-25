@@ -6,17 +6,18 @@
  * Time: 16:27
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
 
 
-use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
 
 /**
  * Class RegexpFilter
  *
  * @package SphereMall\MS\Lib\Filters\Elastic
  */
-class RegexpQuery extends BasicQuery implements ElasticQueryInterface
+class RegexpQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElement
 {
     private $value = null;
     private $field = null;

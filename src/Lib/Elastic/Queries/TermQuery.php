@@ -6,7 +6,7 @@
  * Time: 17:16
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
 
 /**
  * Class TermQuery

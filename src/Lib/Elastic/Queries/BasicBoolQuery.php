@@ -6,7 +6,9 @@
  * Time: 18:45
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
+
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
 
 /**
  * Class BasicBoolQuery
@@ -25,7 +27,9 @@ abstract class BasicBoolQuery
      */
     public function __construct(array $elements)
     {
-        $this->elements = $elements;
+        foreach ($elements as $element) {
+            $this->setElement($element);
+        }
     }
 
     /**
@@ -41,8 +45,20 @@ abstract class BasicBoolQuery
 
         return [
             'bool' => [
-                $this->queryType => $queries
+                $this->queryType => $queries,
             ],
         ];
+    }
+
+    /**
+     * @param ElasticBodyElement $element
+     *
+     * @return $this
+     */
+    public function setElement(ElasticBodyElement $element)
+    {
+        $this->elements[] = $element;
+
+        return $this;
     }
 }

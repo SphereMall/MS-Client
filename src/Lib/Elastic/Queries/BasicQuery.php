@@ -6,7 +6,7 @@
  * Time: 16:06
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
 
 /**
  * Class BasicFilter

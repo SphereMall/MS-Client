@@ -2,23 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: Davidych
- * Date: 22.02.19
- * Time: 18:48
+ * Date: 25.02.19
+ * Time: 9:35
  */
 
-namespace SphereMall\MS\Tests\Lib\Queries;
+namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
-use SphereMall\MS\Lib\Queries\Elastic\FilterQuery;
-use SphereMall\MS\Lib\Queries\Elastic\MatchQuery;
-use SphereMall\MS\Lib\Queries\Elastic\MustNotQuery;
-use SphereMall\MS\Lib\Queries\Elastic\MustQuery;
-use SphereMall\MS\Lib\Queries\Elastic\ShouldQuery;
-use SphereMall\MS\Lib\Queries\Elastic\TermsQuery;
-use SphereMall\MS\Lib\Queries\Interfaces\ElasticBoolQueryInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Queries\FilterQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MatchQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MustNotQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
+use SphereMall\MS\Lib\Elastic\Queries\ShouldQuery;
+use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
 use SphereMall\MS\Tests\Resources\SetUpResourceTest;
 
-class ElasticBoolQueryTest extends SetUpResourceTest
+class BoolQueriesTest extends SetUpResourceTest
 {
     public function testMustQuery()
     {
@@ -26,7 +26,7 @@ class ElasticBoolQueryTest extends SetUpResourceTest
             new TermsQuery("name", ["dd", "tt"]),
         ]);
 
-        $this->assertInstanceOf(ElasticBoolQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'bool' => [
                 'must' => [
@@ -46,7 +46,7 @@ class ElasticBoolQueryTest extends SetUpResourceTest
             new MatchQuery("name", "dd"),
         ]);
 
-        $this->assertInstanceOf(ElasticBoolQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'bool' => [
                 'should' => [
@@ -69,7 +69,7 @@ class ElasticBoolQueryTest extends SetUpResourceTest
             new MatchQuery("name", "dd"),
         ]);
 
-        $this->assertInstanceOf(ElasticBoolQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'bool' => [
                 'filter' => [
@@ -92,7 +92,7 @@ class ElasticBoolQueryTest extends SetUpResourceTest
             new MatchQuery("name", "dd"),
         ]);
 
-        $this->assertInstanceOf(ElasticBoolQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'bool' => [
                 'must_not' => [
@@ -109,4 +109,3 @@ class ElasticBoolQueryTest extends SetUpResourceTest
         ]);
     }
 }
-

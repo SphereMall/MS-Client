@@ -6,18 +6,19 @@
  * Time: 15:19
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
 
 
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
 use SphereMall\MS\Lib\Filters\GeoDistanceUnits;
-use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
 
 /**
  * Class DistanceFilter
  *
  * @package SphereMall\MS\Lib\Filters\Elastic
  */
-class DistanceQuery extends BasicQuery implements ElasticQueryInterface
+class DistanceQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElement
 {
     private $lat          = null;
     private $lon          = null;

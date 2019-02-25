@@ -6,17 +6,18 @@
  * Time: 17:19
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
 
 
-use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
 
 /**
  * Class RangeQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class RangeQuery extends BasicQuery implements ElasticQueryInterface
+class RangeQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElement
 {
     private $field = null;
     private $range = [];

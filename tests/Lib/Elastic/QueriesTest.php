@@ -2,32 +2,32 @@
 /**
  * Created by PhpStorm.
  * User: Davidych
- * Date: 22.02.19
- * Time: 16:23
+ * Date: 25.02.19
+ * Time: 9:34
  */
 
-namespace SphereMall\MS\Tests\Lib\Filters;
+namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
-use SphereMall\MS\Lib\Queries\Elastic\DistanceQuery;
-use SphereMall\MS\Lib\Queries\Elastic\ExistsQuery;
-use SphereMall\MS\Lib\Queries\Elastic\MatchPhraseQuery;
-use SphereMall\MS\Lib\Queries\Elastic\MatchQuery;
-use SphereMall\MS\Lib\Queries\Elastic\MultiMatchQuery;
-use SphereMall\MS\Lib\Queries\Elastic\RangeQuery;
-use SphereMall\MS\Lib\Queries\Elastic\RegexpQuery;
-use SphereMall\MS\Lib\Queries\Elastic\TermQuery;
-use SphereMall\MS\Lib\Queries\Elastic\TermsQuery;
-use SphereMall\MS\Lib\Queries\Elastic\WildCardQuery;
-use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Queries\DistanceQuery;
+use SphereMall\MS\Lib\Elastic\Queries\ExistsQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MatchPhraseQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MatchQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MultiMatchQuery;
+use SphereMall\MS\Lib\Elastic\Queries\RangeQuery;
+use SphereMall\MS\Lib\Elastic\Queries\RegexpQuery;
+use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
+use SphereMall\MS\Lib\Elastic\Queries\WildCardQuery;
+use SphereMall\MS\Lib\Elastic\Queries\TermQuery;
 use SphereMall\MS\Tests\Resources\SetUpResourceTest;
 
-class ElasticQueryTest extends SetUpResourceTest
+class QueriesTest extends SetUpResourceTest
 {
     public function testDistanceQuery()
     {
         $query = new DistanceQuery(10, 11, 10);
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
 
         $this->assertEquals($query->toArray(), [
             'geo_distance' => [
@@ -44,7 +44,7 @@ class ElasticQueryTest extends SetUpResourceTest
     {
         $query = new RegexpQuery('name', 'd*d');
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'regexp' => [
                 'name' => [
@@ -69,7 +69,7 @@ class ElasticQueryTest extends SetUpResourceTest
     {
         $query = new ExistsQuery("name");
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'exists' => [
                 'field' => 'name',
@@ -81,7 +81,7 @@ class ElasticQueryTest extends SetUpResourceTest
     {
         $query = new TermsQuery('name', ['Vasia', 'Petiya']);
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'terms' => [
                 'name' => ['Vasia', 'Petiya'],
@@ -93,7 +93,7 @@ class ElasticQueryTest extends SetUpResourceTest
     {
         $query = new TermQuery('name', 'Vasia');
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'terms' => [
                 'name' => ["Vasia"],
@@ -108,7 +108,7 @@ class ElasticQueryTest extends SetUpResourceTest
             'gte' => 10,
         ]);
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'range' => [
                 'price' => [
@@ -123,7 +123,7 @@ class ElasticQueryTest extends SetUpResourceTest
     {
         $query = new WildCardQuery('name', 'na*e');
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'wildcard' => [
                 'name' => [
@@ -148,7 +148,7 @@ class ElasticQueryTest extends SetUpResourceTest
     {
         $query = new MultiMatchQuery("query string", ["title", "name"]);
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             "multi_match" => [
                 "query"    => "query string",
@@ -173,7 +173,7 @@ class ElasticQueryTest extends SetUpResourceTest
     {
         $query = new MatchPhraseQuery("name", "ddi");
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             "match_phrase" => [
                 "name" => [
@@ -197,7 +197,7 @@ class ElasticQueryTest extends SetUpResourceTest
     {
         $query = new MatchQuery("name", "dd");
 
-        $this->assertInstanceOf(ElasticQueryInterface::class, $query);
+        $this->assertInstanceOf(ElasticBodyElement::class, $query);
         $this->assertEquals($query->toArray(), [
             'match' => [
                 'name' => [

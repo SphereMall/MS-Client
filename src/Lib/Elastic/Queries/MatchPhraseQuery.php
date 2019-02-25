@@ -6,17 +6,17 @@
  * Time: 17:42
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
 
-
-use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
 
 /**
  * Class MatchPhraseQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class MatchPhraseQuery extends BasicQuery implements ElasticQueryInterface
+class MatchPhraseQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElement
 {
     private $field = null;
     private $query = null;

@@ -6,17 +6,18 @@
  * Time: 17:24
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
 
 
-use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
 
 /**
  * Class WildCardQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class WildCardQuery extends BasicQuery implements ElasticQueryInterface
+class WildCardQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElement
 {
     private $field = null;
     private $value = null;

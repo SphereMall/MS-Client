@@ -6,17 +6,17 @@
  * Time: 16:46
  */
 
-namespace SphereMall\MS\Lib\Queries\Elastic;
+namespace SphereMall\MS\Lib\Elastic\Queries;
 
-
-use SphereMall\MS\Lib\Queries\Interfaces\ElasticQueryInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
 
 /**
  * Class ExistsFilter
  *
  * @package SphereMall\MS\Lib\Filters\Elastic
  */
-class ExistsQuery extends BasicQuery implements ElasticQueryInterface
+class ExistsQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElement
 {
     private $field = null;
 
