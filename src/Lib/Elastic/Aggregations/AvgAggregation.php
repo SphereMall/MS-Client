@@ -8,18 +8,12 @@
 
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
-
+use SphereMall\MS\Lib\Elastic\Aggregations\Traits\MetricAggregation;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
 
 class AvgAggregation extends BasicAggregation implements ElasticBodyElement
 {
-    /**
-     * Convert to array
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
+    use MetricAggregation;
 
-    }
+    protected $type  = 'avg';
 }

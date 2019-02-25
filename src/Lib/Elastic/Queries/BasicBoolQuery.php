@@ -37,15 +37,11 @@ abstract class BasicBoolQuery
      */
     public function toArray(): array
     {
-        $queries = [];
-
-        foreach ($this->elements as $element) {
-            $queries[] = $element->toArray();
-        }
-
         return [
             'bool' => [
-                $this->queryType => $queries,
+                $this->queryType => array_map(function (ElasticBodyElement $element) {
+                    return $element->toArray();
+                }, $this->elements),
             ],
         ];
     }
@@ -55,7 +51,7 @@ abstract class BasicBoolQuery
      *
      * @return $this
      */
-    public function setElement(ElasticBodyElement $element)
+    private function setElement(ElasticBodyElement $element)
     {
         $this->elements[] = $element;
 

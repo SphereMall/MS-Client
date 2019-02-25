@@ -39,15 +39,10 @@ class SortBuilder implements ElasticBodyElement
      */
     public function toArray(): array
     {
-        $sort = [];
-
-        foreach ($this->elements as $element) {
-            /**@var $element \SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement* */
-            $sort[] = $element->toArray();
-        }
-
         return [
-            'sort' => $sort,
+            'sort' => array_map(function (ElasticBodyElement $sort) {
+                return $sort->toArray();
+            }, $this->elements),
         ];
     }
 

@@ -9,6 +9,7 @@
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
 
+use SphereMall\MS\Lib\Elastic\Aggregations\Traits\MetricAggregation;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
 
 /**
@@ -18,30 +19,7 @@ use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
  */
 class SumAggregation extends BasicAggregation implements ElasticBodyElement
 {
+    use MetricAggregation;
 
-    private $field = null;
-
-    /**
-     * SumAggregation constructor.
-     *
-     * @param string $field
-     */
-    public function __construct(string $field)
-    {
-        $this->field = $field;
-    }
-
-    /**
-     * Convert to array
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return [
-            'avg' => array_merge([
-                'fields' => $this->field,
-            ], $this->additionalParams),
-        ];
-    }
+    protected $type = 'sum';
 }

@@ -17,4 +17,11 @@ interface ElasticAggregationInterface
      * @return ElasticAggregationInterface
      */
     public function subAggregation(ElasticAggregationInterface $aggregation): ElasticAggregationInterface;
+
+    /**
+     * @param array $scriptParams
+     *
+     * @return mixed
+     */
+    public function setScript(array $scriptParams): ElasticAggregationInterface;
 }

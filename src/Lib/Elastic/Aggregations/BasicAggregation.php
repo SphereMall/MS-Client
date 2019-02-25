@@ -14,6 +14,7 @@ use SphereMall\MS\Lib\Elastic\Interfaces\ElasticAggregationInterface;
 class BasicAggregation implements ElasticAggregationInterface
 {
     protected $additionalParams = [];
+    protected $script           = [];
 
     /**
      * @param ElasticAggregationInterface $aggregation
@@ -31,4 +32,17 @@ class BasicAggregation implements ElasticAggregationInterface
 
         return $this;
     }
+
+    /**
+     * @param array $scriptParams
+     *
+     * @return ElasticAggregationInterface
+     */
+    public function setScript(array $scriptParams): ElasticAggregationInterface
+    {
+        $this->script = $scriptParams;
+
+        return $this;
+    }
+
 }

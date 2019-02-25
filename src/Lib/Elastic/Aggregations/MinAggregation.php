@@ -9,19 +9,12 @@
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
 
+use SphereMall\MS\Lib\Elastic\Aggregations\Traits\MetricAggregation;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
 
 class MinAggregation extends BasicAggregation implements ElasticBodyElement
-
 {
+    use MetricAggregation;
 
-    /**
-     * Convert to array
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
-        // TODO: Implement toArray() method.
-    }
+    protected $type = 'min';
 }
