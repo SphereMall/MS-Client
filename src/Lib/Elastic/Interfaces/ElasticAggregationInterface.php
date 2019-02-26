@@ -9,14 +9,16 @@
 namespace SphereMall\MS\Lib\Elastic\Interfaces;
 
 
+use SphereMall\MS\Lib\Elastic\Aggregations\AggregationBuilder;
+
 interface ElasticAggregationInterface
 {
     /**
-     * @param ElasticAggregationInterface $aggregation
+     * @param AggregationBuilder $aggregation
      *
      * @return ElasticAggregationInterface
      */
-    public function subAggregation(ElasticAggregationInterface $aggregation): ElasticAggregationInterface;
+    public function subAggregation(AggregationBuilder $aggregation): ElasticAggregationInterface;
 
     /**
      * @param array $scriptParams

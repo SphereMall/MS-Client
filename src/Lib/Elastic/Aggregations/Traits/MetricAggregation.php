@@ -8,11 +8,20 @@
 
 namespace SphereMall\MS\Lib\Elastic\Aggregations\Traits;
 
-
+/**
+ * Trait MetricAggregation
+ *
+ * @package SphereMall\MS\Lib\Elastic\Aggregations\Traits
+ */
 trait MetricAggregation
 {
-    private   $field = null;
+    private $field = null;
 
+    /**
+     * MetricAggregation constructor.
+     *
+     * @param string $field
+     */
     public function __construct(string $field)
     {
         $this->field = $field;
@@ -25,8 +34,14 @@ trait MetricAggregation
      */
     public function toArray(): array
     {
-        return [
-            $this->type => $this->script ? ['script' => $this->script] : array_merge(['field' => $this->field],$this->additionalParams)
+        $result = [
+            $this->type => $this->script ? ['script' => $this->script] : array_merge(['field' => $this->field], $this->additionalParams),
         ];
+
+        if ($this->subAggregations) {
+            $result['aggs'] = $this->subAggregations;
+        }
+
+        return $result;
     }
 }
