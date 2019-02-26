@@ -9,6 +9,7 @@
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
 
+use SphereMall\MS\Lib\Elastic\Builders\AggregationBuilder;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticAggregationInterface;
 
 class BasicAggregation implements ElasticAggregationInterface

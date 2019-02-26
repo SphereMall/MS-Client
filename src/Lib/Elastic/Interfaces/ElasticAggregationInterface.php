@@ -8,8 +8,7 @@
 
 namespace SphereMall\MS\Lib\Elastic\Interfaces;
 
-
-use SphereMall\MS\Lib\Elastic\Aggregations\AggregationBuilder;
+use SphereMall\MS\Lib\Elastic\Builders\AggregationBuilder;
 
 interface ElasticAggregationInterface
 {

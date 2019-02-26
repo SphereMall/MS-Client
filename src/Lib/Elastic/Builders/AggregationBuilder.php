@@ -6,7 +6,7 @@
  * Time: 9:17
  */
 
-namespace SphereMall\MS\Lib\Elastic\Aggregations;
+namespace SphereMall\MS\Lib\Elastic\Builders;
 
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
 

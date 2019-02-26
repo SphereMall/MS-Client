@@ -9,7 +9,7 @@
 namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
-use SphereMall\MS\Lib\Elastic\Aggregations\AggregationBuilder;
+use SphereMall\MS\Lib\Elastic\Builders\AggregationBuilder;
 use SphereMall\MS\Lib\Elastic\Aggregations\AvgAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\BucketSortAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\FiltersAggregation;
