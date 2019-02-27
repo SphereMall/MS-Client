@@ -9,23 +9,20 @@
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
 
+use SphereMall\MS\Lib\Elastic\Builders\AggregationBuilder;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticAggregationInterface;
 
 class BasicAggregation implements ElasticAggregationInterface
 {
     protected $additionalParams = [];
     protected $script           = [];
+    protected $subAggregations  = [];
 
     /**
-     * @param ElasticAggregationInterface $aggregation
+     * @param array $params
      *
-     * @return ElasticAggregationInterface
+     * @return $this
      */
-    public function subAggregation(ElasticAggregationInterface $aggregation): ElasticAggregationInterface
-    {
-        return $this;
-    }
-
     public function setAdditionalParams(array $params)
     {
         $this->additionalParams = $params;
@@ -45,4 +42,15 @@ class BasicAggregation implements ElasticAggregationInterface
         return $this;
     }
 
+    /**
+     * @param AggregationBuilder $aggregation
+     *
+     * @return ElasticAggregationInterface
+     */
+    public function subAggregation(AggregationBuilder $aggregation): ElasticAggregationInterface
+    {
+        $this->subAggregations = $aggregation->toArray();
+
+        return $this;
+    }
 }

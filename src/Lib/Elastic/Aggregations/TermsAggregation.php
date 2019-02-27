@@ -40,11 +40,16 @@ class TermsAggregation extends BasicAggregation implements ElasticBodyElement
      */
     public function toArray(): array
     {
-        return [
+        $result = [
             'terms' => array_merge([
                 'field' => $this->field,
                 'size'  => $this->size,
             ], $this->additionalParams),
         ];
+
+        if ($this->subAggregations) {
+            $result['aggs'] = $this->subAggregations;
+        }
+        return $result;
     }
 }

@@ -9,6 +9,7 @@
 namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
+use SphereMall\MS\Lib\Elastic\Builders\AggregationBuilder;
 use SphereMall\MS\Lib\Elastic\Aggregations\AvgAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\BucketSortAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\FiltersAggregation;
@@ -18,6 +19,7 @@ use SphereMall\MS\Lib\Elastic\Aggregations\SumAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\TermsAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\TopHistAggregation;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticAggregationInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
 use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
 use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
 use SphereMall\MS\Lib\Elastic\Sort\SortElement;
@@ -332,5 +334,44 @@ class AggregationsTest extends SetUpResourceTest
             ],
         ], $aggregation->toArray());
 
+    }
+
+    public function testAggregationBuilder()
+    {
+        $aggregationBuilder = new AggregationBuilder("name", new TermsAggregation("name"));
+
+        $this->assertInstanceOf(ElasticBodyElement::class, $aggregationBuilder);
+        $this->assertEquals([
+            'name' => [
+                'terms' => [
+                    'field' => 'name',
+                    'size'  => 10,
+                ],
+            ],
+        ], $aggregationBuilder->toArray());
+
+        $aggregationBuilder = new AggregationBuilder(
+            "name",
+            (new TermsAggregation("price"))->subAggregation(
+                new AggregationBuilder("brand", new TermsAggregation("brand"))
+            )
+        );
+
+        $this->assertEquals([
+            'name' => [
+                'terms' => [
+                    'field' => 'price',
+                    'size'  => 10,
+                ],
+                'aggs'  => [
+                    'brand' => [
+                        'terms' => [
+                            'field' => 'brand',
+                            'size'  => 10,
+                        ],
+                    ],
+                ],
+            ],
+        ], $aggregationBuilder->toArray());
     }
 }

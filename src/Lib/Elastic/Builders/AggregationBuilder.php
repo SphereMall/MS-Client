@@ -6,9 +6,8 @@
  * Time: 9:17
  */
 
-namespace SphereMall\MS\Lib\Elastic\Aggregations;
+namespace SphereMall\MS\Lib\Elastic\Builders;
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticAggregationInterface;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
 
 /**
@@ -18,17 +17,19 @@ use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
  */
 class AggregationBuilder implements ElasticBodyElement
 {
-    private $aggregations = [];
+    private $aggregationName = null;
+    private $aggregation     = null;
 
     /**
      * AggregationBuilder constructor.
      *
-     * @param string                      $name
-     * @param ElasticAggregationInterface $aggregation
+     * @param string             $name
+     * @param ElasticBodyElement $aggregation
      */
-    public function __construct(string $name, ElasticAggregationInterface $aggregation)
+    public function __construct(string $name, ElasticBodyElement $aggregation)
     {
-
+        $this->aggregationName = $name;
+        $this->aggregation     = $aggregation;
     }
 
     /**
@@ -38,6 +39,8 @@ class AggregationBuilder implements ElasticBodyElement
      */
     public function toArray(): array
     {
-
+        return [
+            $this->aggregationName => $this->aggregation->toArray(),
+        ];
     }
 }
