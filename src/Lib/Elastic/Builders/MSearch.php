@@ -31,6 +31,43 @@ class MSearch implements SearchInterface
 
     public function getParams()
     {
-        // TODO: Implement getParams() method.
+        $result = [];
+        foreach ($this->builders as $builder) {
+            /**@var \SphereMall\MS\Lib\Elastic\Builders\BodyBuilder $builder * */
+            $result[] = [
+                "index" => $builder->getIndexes(),
+            ];
+
+            if ($q = $builder->getQuery()) {
+                $res['query'] = $q;
+            }
+
+            if ($size = $builder->getLimit()) {
+                $res['size'] = $size;
+            }
+
+            if ($from = $builder->getOffset()) {
+                $res['from'] = $from;
+            }
+
+            if ($source = $builder->getSource()) {
+                $res['_source'] = $source;
+            }
+
+            if ($aggregations = $builder->getAggregations()) {
+                $res['aggs'] = $aggregations;
+            }
+
+            if ($sort = $builder->getSort()) {
+                $res
+                ['sort'] = $sort;
+            }
+
+            $result[] = $res ?? [];
+        }
+
+        return [
+            'body' => $result,
+        ];
     }
 }
