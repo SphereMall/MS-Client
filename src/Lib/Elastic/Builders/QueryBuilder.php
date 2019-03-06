@@ -8,13 +8,13 @@
 
 namespace SphereMall\MS\Lib\Elastic\Builders;
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Queries\FilterQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MustNotQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
 use SphereMall\MS\Lib\Elastic\Queries\ShouldQuery;
 
-class QueryBuilder implements ElasticBodyElement
+class QueryBuilder implements ElasticBodyElementInterface
 {
     private $result = [];
 

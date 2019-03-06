@@ -8,7 +8,7 @@
 
 namespace SphereMall\MS\Lib\Elastic\Queries;
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 
 /**
  * Class BasicBoolQuery
@@ -39,7 +39,7 @@ abstract class BasicBoolQuery
     {
         return [
             'bool' => [
-                $this->queryType => array_map(function (ElasticBodyElement $element) {
+                $this->queryType => array_map(function (ElasticBodyElementInterface $element) {
                     return $element->toArray();
                 }, $this->elements),
             ],
@@ -47,11 +47,11 @@ abstract class BasicBoolQuery
     }
 
     /**
-     * @param ElasticBodyElement $element
+     * @param ElasticBodyElementInterface $element
      *
      * @return $this
      */
-    private function setElement(ElasticBodyElement $element)
+    private function setElement(ElasticBodyElementInterface $element)
     {
         $this->elements[] = $element;
 

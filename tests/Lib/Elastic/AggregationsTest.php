@@ -19,7 +19,7 @@ use SphereMall\MS\Lib\Elastic\Aggregations\SumAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\TermsAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\TopHistAggregation;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticAggregationInterface;
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
 use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
 use SphereMall\MS\Lib\Elastic\Sort\SortElement;
@@ -340,7 +340,7 @@ class AggregationsTest extends SetUpResourceTest
     {
         $aggregationBuilder = new AggregationBuilder("name", new TermsAggregation("name"));
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $aggregationBuilder);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $aggregationBuilder);
         $this->assertEquals([
             'name' => [
                 'terms' => [

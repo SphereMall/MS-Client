@@ -10,7 +10,7 @@ namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
 use SphereMall\MS\Lib\Elastic\Builders\QueryBuilder;
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Queries\FilterQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MustNotQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
@@ -28,7 +28,7 @@ class QueryBuilderTest extends SetUpResourceTest
             new TermQuery("name", "dd"),
         ]));
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $builder);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $builder);
 
         $this->assertEquals([
             'bool' => [

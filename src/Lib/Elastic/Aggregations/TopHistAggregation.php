@@ -9,10 +9,10 @@
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Sort\SortElement;
 
-class TopHistAggregation extends BasicAggregation implements ElasticBodyElement
+class TopHistAggregation extends BasicAggregation implements ElasticBodyElementInterface
 {
     private $size   = null;
     private $from   = null;

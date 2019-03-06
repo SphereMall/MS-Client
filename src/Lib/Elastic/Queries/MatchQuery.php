@@ -10,7 +10,7 @@ namespace SphereMall\MS\Lib\Elastic\Queries;
 
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
 
 /**
@@ -18,7 +18,7 @@ use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class MatchQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElement
+class MatchQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElementInterface
 {
     private $query    = null;
     private $field    = null;

@@ -9,7 +9,7 @@
 namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Sort\SortBuilder;
 use SphereMall\MS\Lib\Elastic\Sort\SortElement;
 use SphereMall\MS\Tests\Resources\SetUpResourceTest;
@@ -20,7 +20,7 @@ class SortTest extends SetUpResourceTest
     {
         $sort = new SortElement("price");
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $sort);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $sort);
         $this->assertEquals($sort->toArray(), [
             'price' => [
                 'order' => 'asc',
@@ -29,7 +29,7 @@ class SortTest extends SetUpResourceTest
 
         $sort = new SortElement("price", "desc");
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $sort);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $sort);
         $this->assertEquals($sort->toArray(), [
             'price' => [
                 'order' => 'desc',
@@ -40,7 +40,7 @@ class SortTest extends SetUpResourceTest
             "mode" => "avg",
         ]);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $sort);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $sort);
         $this->assertEquals($sort->toArray(), [
             'price' => [
                 'order' => 'desc',
@@ -59,7 +59,7 @@ class SortTest extends SetUpResourceTest
             ]),
         ]);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $builder);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $builder);
         $this->assertEquals([
             'sort' => [
                 [

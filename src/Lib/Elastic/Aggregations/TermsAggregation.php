@@ -9,14 +9,14 @@
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 
 /**
  * Class TermsAggregation
  *
  * @package SphereMall\MS\Lib\Elastic\Aggregations
  */
-class TermsAggregation extends BasicAggregation implements ElasticBodyElement
+class TermsAggregation extends BasicAggregation implements ElasticBodyElementInterface
 {
     private $field = null;
     private $size  = null;

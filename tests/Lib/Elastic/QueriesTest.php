@@ -9,7 +9,7 @@
 namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Queries\DistanceQuery;
 use SphereMall\MS\Lib\Elastic\Queries\ExistsQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MatchPhraseQuery;
@@ -27,7 +27,7 @@ class QueriesTest extends SetUpResourceTest
     public function testDistanceQuery()
     {
         $query = new DistanceQuery(10, 11, 10);
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
 
         $this->assertEquals($query->toArray(), [
             'geo_distance' => [
@@ -44,7 +44,7 @@ class QueriesTest extends SetUpResourceTest
     {
         $query = new RegexpQuery('name', 'd*d');
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'regexp' => [
                 'name' => [
@@ -69,7 +69,7 @@ class QueriesTest extends SetUpResourceTest
     {
         $query = new ExistsQuery("name");
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'exists' => [
                 'field' => 'name',
@@ -81,7 +81,7 @@ class QueriesTest extends SetUpResourceTest
     {
         $query = new TermsQuery('name', ['Vasia', 'Petiya']);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'terms' => [
                 'name' => ['Vasia', 'Petiya'],
@@ -93,7 +93,7 @@ class QueriesTest extends SetUpResourceTest
     {
         $query = new TermQuery('name', 'Vasia');
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'terms' => [
                 'name' => ["Vasia"],
@@ -108,7 +108,7 @@ class QueriesTest extends SetUpResourceTest
             'gte' => 10,
         ]);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'range' => [
                 'price' => [
@@ -123,7 +123,7 @@ class QueriesTest extends SetUpResourceTest
     {
         $query = new WildCardQuery('name', 'na*e');
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'wildcard' => [
                 'name' => [
@@ -148,7 +148,7 @@ class QueriesTest extends SetUpResourceTest
     {
         $query = new MultiMatchQuery("query string", ["title", "name"]);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             "multi_match" => [
                 "query"    => "query string",
@@ -173,7 +173,7 @@ class QueriesTest extends SetUpResourceTest
     {
         $query = new MatchPhraseQuery("name", "ddi");
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             "match_phrase" => [
                 "name" => [
@@ -197,7 +197,7 @@ class QueriesTest extends SetUpResourceTest
     {
         $query = new MatchQuery("name", "dd");
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'match' => [
                 'name' => [

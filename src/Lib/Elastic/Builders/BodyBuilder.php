@@ -15,6 +15,14 @@ use SphereMall\MS\Lib\Elastic\Sort\SortBuilder;
  * Class BodyBuilder
  *
  * @package SphereMall\MS\Lib\Elastic\Builders
+ *
+ * @method getQuery()
+ * @method getAggregations()
+ * @method getSort()
+ * @method getSource()
+ * @method getIndexes()
+ * @method getLimit()
+ * @method getOffset()
  */
 class BodyBuilder
 {
@@ -23,8 +31,29 @@ class BodyBuilder
     private $sort        = null;
     private $source      = null;
     private $indexes     = null;
-    private $from        = null;
+    private $limit       = null;
     private $offset      = null;
+
+    /**
+     * @param $name
+     * @param $arguments
+     *
+     * @return bool
+     */
+    public function __call($name, $arguments)
+    {
+        if (stripos($name, 'get') === false) {
+            return false;
+        }
+
+        $propName = strtolower(str_replace("get", "", $name));
+
+        if (!isset($this->{$propName})) {
+            return false;
+        }
+
+        return $this->{$propName};
+    }
 
     /**
      * @param QueryBuilder $query
@@ -81,19 +110,19 @@ class BodyBuilder
      */
     public function indexes(array $indexes)
     {
-        $this->indexes = $indexes;
+        $this->indexes = implode(',', $indexes);
 
         return $this;
     }
 
     /**
-     * @param int $from
+     * @param int $limit
      *
      * @return $this
      */
-    public function from(int $from)
+    public function limit(int $limit)
     {
-        $this->from = $from;
+        $this->limit = $limit;
 
         return $this;
     }

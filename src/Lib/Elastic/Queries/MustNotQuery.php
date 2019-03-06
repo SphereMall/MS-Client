@@ -9,14 +9,14 @@
 namespace SphereMall\MS\Lib\Elastic\Queries;
 
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBoolQueryInterface;
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;;
 
 /**
  * Class MustNotQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class MustNotQuery extends BasicBoolQuery implements ElasticBoolQueryInterface, ElasticBodyElement
+class MustNotQuery extends BasicBoolQuery implements ElasticBoolQueryInterface, ElasticBodyElementInterface
 {
     protected $queryType = 'must_not';
 }

@@ -9,7 +9,7 @@
 namespace SphereMall\MS\Lib\Elastic\Interfaces;
 
 
-interface ElasticBodyElement
+interface ElasticBodyElementInterface
 {
     /**
      * Convert to array

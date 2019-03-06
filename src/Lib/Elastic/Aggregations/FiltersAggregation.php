@@ -8,10 +8,10 @@
 
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Queries\BasicBoolQuery;
 
-class FiltersAggregation extends BasicAggregation implements ElasticBodyElement
+class FiltersAggregation extends BasicAggregation implements ElasticBodyElementInterface
 {
     private $filterName = null;
     private $query      = null;

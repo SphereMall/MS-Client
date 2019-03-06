@@ -10,9 +10,9 @@ namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
 
 use SphereMall\MS\Lib\Elastic\Aggregations\Traits\MetricAggregation;
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 
-class MaxAggregation extends BasicAggregation implements ElasticBodyElement
+class MaxAggregation extends BasicAggregation implements ElasticBodyElementInterface
 {
     use MetricAggregation;
 

@@ -9,7 +9,7 @@
 namespace SphereMall\MS\Lib\Elastic\Aggregations;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Sort\SortElement;
 
 /**
@@ -17,7 +17,7 @@ use SphereMall\MS\Lib\Elastic\Sort\SortElement;
  *
  * @package SphereMall\MS\Lib\Elastic\Aggregations
  */
-class BucketSortAggregation extends BasicAggregation implements ElasticBodyElement
+class BucketSortAggregation extends BasicAggregation implements ElasticBodyElementInterface
 {
     private $size = 0;
     private $from = 0;

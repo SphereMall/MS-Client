@@ -10,14 +10,14 @@ namespace SphereMall\MS\Lib\Elastic\Queries;
 
 
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBoolQueryInterface;
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 
 /**
  * Class ShouldQuery
  *
  * @package SphereMall\MS\Lib\Queries\Elastic
  */
-class ShouldQuery extends BasicBoolQuery implements ElasticBoolQueryInterface, ElasticBodyElement
+class ShouldQuery extends BasicBoolQuery implements ElasticBoolQueryInterface, ElasticBodyElementInterface
 {
     protected $queryType = "should";
 }

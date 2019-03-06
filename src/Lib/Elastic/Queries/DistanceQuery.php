@@ -9,7 +9,7 @@
 namespace SphereMall\MS\Lib\Elastic\Queries;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticQueryInterface;
 use SphereMall\MS\Lib\Filters\GeoDistanceUnits;
 
@@ -18,7 +18,7 @@ use SphereMall\MS\Lib\Filters\GeoDistanceUnits;
  *
  * @package SphereMall\MS\Lib\Filters\Elastic
  */
-class DistanceQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElement
+class DistanceQuery extends BasicQuery implements ElasticQueryInterface, ElasticBodyElementInterface
 {
     private $lat          = null;
     private $lon          = null;

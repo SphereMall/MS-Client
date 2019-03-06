@@ -9,14 +9,14 @@
 namespace SphereMall\MS\Lib\Elastic\Sort;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 
 /**
  * Class SortBuilder
  *
  * @package SphereMall\MS\Lib\Elastic\Sort
  */
-class SortBuilder implements ElasticBodyElement
+class SortBuilder implements ElasticBodyElementInterface
 {
     private $elements = [];
 
@@ -40,18 +40,18 @@ class SortBuilder implements ElasticBodyElement
     public function toArray(): array
     {
         return [
-            'sort' => array_map(function (ElasticBodyElement $sort) {
+            'sort' => array_map(function (ElasticBodyElementInterface $sort) {
                 return $sort->toArray();
             }, $this->elements),
         ];
     }
 
     /**
-     * @param ElasticBodyElement $element
+     * @param ElasticBodyElementInterface $element
      *
      * @return $this
      */
-    private function setSort(ElasticBodyElement $element)
+    private function setSort(ElasticBodyElementInterface $element)
     {
         $this->elements[] = $element;
 

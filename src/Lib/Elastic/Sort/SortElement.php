@@ -9,14 +9,14 @@
 namespace SphereMall\MS\Lib\Elastic\Sort;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 
 /**
  * Class SortElement
  *
  * @package SphereMall\MS\Lib\Elastic\Sort
  */
-class SortElement implements ElasticBodyElement
+class SortElement implements ElasticBodyElementInterface
 {
     private $field      = null;
     private $order      = null;

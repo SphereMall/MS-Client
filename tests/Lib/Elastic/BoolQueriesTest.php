@@ -9,7 +9,7 @@
 namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
-use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElement;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
 use SphereMall\MS\Lib\Elastic\Queries\FilterQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MatchQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MustNotQuery;
@@ -26,7 +26,7 @@ class BoolQueriesTest extends SetUpResourceTest
             new TermsQuery("name", ["dd", "tt"]),
         ]);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'bool' => [
                 'must' => [
@@ -46,7 +46,7 @@ class BoolQueriesTest extends SetUpResourceTest
             new MatchQuery("name", "dd"),
         ]);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'bool' => [
                 'should' => [
@@ -69,7 +69,7 @@ class BoolQueriesTest extends SetUpResourceTest
             new MatchQuery("name", "dd"),
         ]);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'bool' => [
                 'filter' => [
@@ -92,7 +92,7 @@ class BoolQueriesTest extends SetUpResourceTest
             new MatchQuery("name", "dd"),
         ]);
 
-        $this->assertInstanceOf(ElasticBodyElement::class, $query);
+        $this->assertInstanceOf(ElasticBodyElementInterface::class, $query);
         $this->assertEquals($query->toArray(), [
             'bool' => [
                 'must_not' => [
