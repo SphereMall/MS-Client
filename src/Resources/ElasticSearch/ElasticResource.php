@@ -29,7 +29,7 @@ class ElasticResource extends Resource
     public function __construct(Client $client, $version = null, $handler = null, $maker = null)
     {
         parent::__construct($client, $version, $handler, $maker);
-        $this->handler = $handler ?? new Request($this->client, $this);
+        $this->handler = $handler ?? null;
     }
 
     public function getURI()
@@ -64,7 +64,9 @@ class ElasticResource extends Resource
 
     public function all()
     {
-        $this->maker = new ElasticSearchMaker();
+        $this->maker   = new ElasticSearchMaker();
+        $this->handler = new Request($this->client, $this);
+
         return $this->make($this->getResponse());
     }
 

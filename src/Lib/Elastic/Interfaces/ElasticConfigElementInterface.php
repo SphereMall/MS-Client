@@ -1,17 +1,17 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Davidych
- * Date: 20.11.18
- * Time: 13:49
+ * User: ddis
+ * Date: 07.03.19
+ * Time: 10:10
  */
 
-namespace SphereMall\MS\Lib\Filters\Interfaces;
+namespace SphereMall\MS\Lib\Elastic\Interfaces;
 
 /**
  * Interface ElasticConfigElementInterface
  *
- * @package SphereMall\MS\Lib\Filters\Interfaces
+ * @package SphereMall\MS\Lib\Elastic\Interfaces
  */
 interface ElasticConfigElementInterface
 {
