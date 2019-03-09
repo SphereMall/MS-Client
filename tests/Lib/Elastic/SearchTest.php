@@ -73,8 +73,8 @@ class SearchTest extends SetUpResourceTest
         ])))->indexes(["sm-products"])->source(["scope","visible"])->limit(1);
 
 
-//        $data = $this->client->elastic()->search($body)->all();
-        $data = $this->client->elastic()->msearch([$body, $body2])->all();
+        $data = $this->client->elastic()->search($body2)->all();
+//        $data = $this->client->elastic()->msearch([$body, $body2])->all();
 
     }
 }

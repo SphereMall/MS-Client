@@ -6,7 +6,7 @@
  * Time: 17:05
  */
 
-namespace SphereMall\MS\Lib\Filters\Elastic\Config;
+namespace SphereMall\MS\Lib\Elastic\Filter\Config;
 
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticConfigElementInterface;
 

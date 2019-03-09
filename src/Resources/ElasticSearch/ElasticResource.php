@@ -10,10 +10,9 @@ namespace SphereMall\MS\Resources\ElasticSearch;
 
 use SphereMall\MS\Client;
 use SphereMall\MS\Lib\Elastic\Builders\BodyBuilder;
+use SphereMall\MS\Lib\Elastic\Builders\FilterBuilder;
 use SphereMall\MS\Lib\Elastic\Builders\MSearch;
 use SphereMall\MS\Lib\Elastic\Builders\Search;
-use SphereMall\MS\Lib\Http\ElasticSearch\Request;
-use SphereMall\MS\Lib\Http\ElasticSearch\Response;
 use SphereMall\MS\Lib\Makers\ElasticSearchMaker;
 use SphereMall\MS\Resources\Resource;
 
@@ -61,25 +60,39 @@ class ElasticResource extends Resource
         return $this;
     }
 
+    /**
+     * @param array|\SphereMall\MS\Lib\Filters\Filter|\SphereMall\MS\Lib\Specifications\Basic\FilterSpecification $filter
+     *
+     * @return $this|Resource
+     * @throws \Exception
+     */
+    public function filter($filter)
+    {
+        if (!is_a($filter, FilterBuilder::class)) {
+            throw new \Exception ("Filter must be extend class 'FilterBuilder'");
+        }
+
+        $this->filter = $filter;
+
+        return $this;
+    }
+
+
+    public function facets()
+    {
+        $handler = new \SphereMall\MS\Lib\Http\Request($this->client, $this);
+        $response = $handler->handle('GET', $this->filter->getConfigs(), 'filter', $this->filter->getQuery());
+
+        return $this->make($response);
+    }
+
 
     public function all()
     {
-        $this->maker   = new ElasticSearchMaker();
-        $this->handler = new Request($this->client, $this);
+        $handler  = new \SphereMall\MS\Lib\Http\ElasticSearch\Request($this->client, $this);
+        $response = $handler->handle('GET', false, false, [$this->search]);
 
-        return $this->make($this->getResponse());
-    }
-
-    /**
-     * @param $params
-     *
-     * @return \GuzzleHttp\Promise\PromiseInterface|Response|\SphereMall\MS\Lib\Http\Response
-     * @throws \Exception
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    private function getResponse()
-    {
-        return $this->handler->handle('GET', false, false, [$this->search]);
+        return $this->make($response, true, new ElasticSearchMaker());
     }
 
 }
