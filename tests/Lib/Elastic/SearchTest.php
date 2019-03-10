@@ -68,9 +68,13 @@ class SearchTest extends SetUpResourceTest
             ],
         ], $body->getQuery());
 
-        $body2 = (new BodyBuilder())->query((new QueryBuilder())->setMust(new MustQuery([
-            new TermQuery("visible", 1)
-        ])))->indexes(["sm-products"])->source(["scope","visible"])->limit(1);
+        $body2 = (new BodyBuilder())
+            ->query((new QueryBuilder())->setMust(new MustQuery([
+                new TermQuery("visible", 1),
+            ])))
+            ->indexes(["sm-products"])
+            ->source(["scope", "visible"])
+            ->limit(1);
 
 
         $data = $this->client->elastic()->search($body2)->all();

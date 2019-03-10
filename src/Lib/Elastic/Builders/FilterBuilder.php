@@ -20,8 +20,9 @@ use SphereMall\MS\Lib\Filters\Filter;
  */
 class FilterBuilder extends Filter
 {
-    private $configs = [];
-    private $query   = [];
+    private $configs    = [];
+    private $query      = [];
+    private $factorsIds = [];
 
     /**
      * @param array $configs
@@ -110,7 +111,7 @@ class FilterBuilder extends Filter
 
         if (isset($result['params'])) {
             $result['params'] = json_encode([
-                $result['params']
+                $result['params'],
             ]);
         }
 
@@ -119,6 +120,21 @@ class FilterBuilder extends Filter
         }
 
         return $result;
+    }
+
+    public function setFactorsId(array $ids)
+    {
+        $this->factorsIds = $ids;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getParams()
+    {
+        return array_merge($this->query, $this->factorsIds);
     }
 
     /**
@@ -133,6 +149,9 @@ class FilterBuilder extends Filter
         return $this;
     }
 
+    /**
+     * @param ElasticParamElementInterface $param
+     */
     private function setParam(ElasticParamElementInterface $param)
     {
         if (!isset($this->query['params'])) {

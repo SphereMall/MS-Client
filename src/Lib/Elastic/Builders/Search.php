@@ -10,6 +10,8 @@ namespace SphereMall\MS\Lib\Elastic\Builders;
 
 
 use SphereMall\MS\Lib\Elastic\Interfaces\SearchInterface;
+use SphereMall\MS\Lib\Elastic\Queries\MultiMatchQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
 
 /**
  * Class Search
@@ -30,9 +32,15 @@ class Search implements SearchInterface
         $this->body = $builder;
     }
 
+    /**
+     * @return array
+     */
     public function getParams()
     {
-        $params = [];
+        if ($filter = $this->body->getFilter()) {
+            $params = $this->getParamsFromFilter($filter);
+        }
+
         if ($q = $this->body->getQuery()) {
             $params['body']["query"] = $q;
         }
@@ -62,5 +70,27 @@ class Search implements SearchInterface
         }
 
         return $params;
+    }
+
+    /**
+     * @param $filter
+     *
+     * @return array
+     */
+    private function getParamsFromFilter(FilterBuilder $filter)
+    {
+        $result = [];
+        $query  = [];
+        $params = $filter->getParams();
+
+        if ($params['entities']) {
+            $result['index'] = $params['entities'];
+        }
+
+        if ($params['keyword']) {
+            $query[] = new MultiMatchQuery($params['keyword']['value'], $params['keyword']['fields']);
+        }
+
+        return $result;
     }
 }

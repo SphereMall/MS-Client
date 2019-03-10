@@ -23,6 +23,7 @@ use SphereMall\MS\Lib\Elastic\Sort\SortBuilder;
  * @method getIndexes()
  * @method getLimit()
  * @method getOffset()
+ * @method getFilter()
  */
 class BodyBuilder
 {
@@ -33,6 +34,7 @@ class BodyBuilder
     private $indexes     = null;
     private $limit       = null;
     private $offset      = null;
+    private $filter      = null;
 
     /**
      * @param $name
@@ -135,6 +137,13 @@ class BodyBuilder
     public function offset(int $offset)
     {
         $this->offset = $offset;
+
+        return $this;
+    }
+
+    public function filter(FilterBuilder $filter)
+    {
+        $this->filter = $filter;
 
         return $this;
     }
