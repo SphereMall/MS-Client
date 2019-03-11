@@ -37,12 +37,14 @@ class Search implements SearchInterface
      */
     public function getParams()
     {
+        $params = [];
+
         if ($filter = $this->body->getFilter()) {
             $params = $this->getParamsFromFilter($filter);
         }
 
         if ($q = $this->body->getQuery()) {
-            $params['body']["query"] = $q;
+            $params['body']["query"] = array_merge_recursive($q, ($params['body']["query"] ?? []));
         }
 
         if ($size = $this->body->getLimit()) {
@@ -87,8 +89,17 @@ class Search implements SearchInterface
             $result['index'] = $params['entities'];
         }
 
-        if ($params['keyword']) {
+        if (isset($params['keyword'])) {
             $query[] = new MultiMatchQuery($params['keyword']['value'], $params['keyword']['fields']);
+        }
+
+        foreach ($params['params'] ?? [] as $param) {
+            /**@var \SphereMall\MS\Lib\Elastic\Interfaces\ElasticParamBuilderInterface $param**/
+            $query[] = $param->createFilter();
+        }
+
+        if ($query) {
+            $result['body']['query'] = (new QueryBuilder())->setMust(new MustQuery($query))->toArray();
         }
 
         return $result;

@@ -23,6 +23,7 @@ class FilterBuilder extends Filter
     private $configs    = [];
     private $query      = [];
     private $factorsIds = [];
+    private $params     = [];
 
     /**
      * @param array $configs
@@ -109,7 +110,11 @@ class FilterBuilder extends Filter
     {
         $result = $this->query;
 
-        if (isset($result['params'])) {
+        if ($this->params) {
+            $result['params'] = [];
+            foreach ($this->params as $param) {
+                $result['params'] = array_merge_recursive($result['params'], $param->getParams());
+            }
             $result['params'] = json_encode([
                 $result['params'],
             ]);
@@ -134,7 +139,7 @@ class FilterBuilder extends Filter
      */
     public function getParams()
     {
-        return array_merge($this->query, $this->factorsIds);
+        return array_merge($this->query, ['factorValues' => $this->factorsIds], ['params' => $this->params]);
     }
 
     /**
@@ -154,10 +159,8 @@ class FilterBuilder extends Filter
      */
     private function setParam(ElasticParamElementInterface $param)
     {
-        if (!isset($this->query['params'])) {
-            $this->query['params'] = [];
-        }
+        $this->params[] = $param;
 
-        $this->query['params'] = array_merge_recursive($this->query['params'], $param->getParams());
+        return $this;
     }
 }

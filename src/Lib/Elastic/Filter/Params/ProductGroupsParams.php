@@ -9,12 +9,25 @@
 namespace SphereMall\MS\Lib\Elastic\Filter\Params;
 
 
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticParamBuilderInterface;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticParamElementInterface;
+use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
 
-class ProductGroupsParams implements ElasticParamElementInterface
+/**
+ * Class ProductGroupsParams
+ *
+ * @package SphereMall\MS\Lib\Elastic\Filter\Params
+ */
+class ProductGroupsParams implements ElasticParamElementInterface, ElasticParamBuilderInterface
 {
     private $values = [];
 
+    /**
+     * ProductGroupsParams constructor.
+     *
+     * @param array $values
+     */
     public function __construct(array $values)
     {
         $this->values = $values;
@@ -28,5 +41,13 @@ class ProductGroupsParams implements ElasticParamElementInterface
         return [
             'productGroups' => $this->values,
         ];
+    }
+
+    /**
+     * @return ElasticBodyElementInterface
+     */
+    public function createFilter(): ElasticBodyElementInterface
+    {
+        return new TermsQuery("productGroupsIds", $this->values);
     }
 }

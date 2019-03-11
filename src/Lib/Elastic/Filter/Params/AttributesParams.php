@@ -9,13 +9,27 @@
 namespace SphereMall\MS\Lib\Elastic\Filter\Params;
 
 
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticBodyElementInterface;
+use SphereMall\MS\Lib\Elastic\Interfaces\ElasticParamBuilderInterface;
 use SphereMall\MS\Lib\Elastic\Interfaces\ElasticParamElementInterface;
+use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
 
-class AttributesParams implements ElasticParamElementInterface
+/**
+ * Class AttributesParams
+ *
+ * @package SphereMall\MS\Lib\Elastic\Filter\Params
+ */
+class AttributesParams implements ElasticParamElementInterface, ElasticParamBuilderInterface
 {
     private $code   = null;
     private $values = [];
 
+    /**
+     * AttributesParams constructor.
+     *
+     * @param       $code
+     * @param array $values
+     */
     public function __construct($code, array $values)
     {
         $this->code   = $code;
@@ -34,5 +48,14 @@ class AttributesParams implements ElasticParamElementInterface
                 ],
             ],
         ];
+    }
+
+    /**
+     * @return ElasticBodyElementInterface
+     */
+    public function createFilter(): ElasticBodyElementInterface
+    {
+        return new TermsQuery($this->code . "_attr.valueId", $this->values);
+
     }
 }

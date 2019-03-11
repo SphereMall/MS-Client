@@ -41,7 +41,7 @@ class Request extends \SphereMall\MS\Lib\Http\Request
         }
 
         try {
-            $response = new Response($client->{$endPoint}($queryParams));
+            $response = new Response($client->{$endPoint}($queryParams), $queryParams['body']['size'] ?? 0, $queryParams['body']['from'] ?? 0);
         } catch (\Exception $ex) {
             $error = json_decode($ex->getMessage());
             throw new \Exception($error->error->reason ?? $ex->getMessage());
