@@ -11,7 +11,7 @@ namespace SphereMall\MS\Tests;
 
 use SphereMall\MS\Client;
 use SphereMall\MS\Lib\Http\Response;
-use SphereMall\MS\Resources\Products\ProductsResource;
+use SphereMall\MS\Resources\Entities\ProductsResource;
 use SphereMall\MS\Resources\Resource;
 
 /**

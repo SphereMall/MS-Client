@@ -10,15 +10,18 @@
 namespace SphereMall\MS\Lib;
 
 use SphereMall\MS\Client;
+use SphereMall\MS\Entities\Categories;
+use SphereMall\MS\Entities\EntityGroups;
 use SphereMall\MS\Lib\Makers\ElasticIndexerResponseMaker;
 use SphereMall\MS\Lib\Makers\ElasticSearchMaker;
 use SphereMall\MS\Resources\Catalog\CatalogItemAttributesResource;
 use SphereMall\MS\Resources\Comments\CommentsResource;
 use SphereMall\MS\Resources\Comments\EntitiesAverageRating;
-use SphereMall\MS\Resources\Documents\DocumentsResource;
 use SphereMall\MS\Resources\ElasticSearch\ElasticIndexerResource;
 use SphereMall\MS\Resources\ElasticSearch\ElasticResource;
 use SphereMall\MS\Resources\ElasticSearch\ElasticSearchResource;
+use SphereMall\MS\Resources\Entities\CategoriesResource;
+use SphereMall\MS\Resources\Entities\EntityGroupsResource;
 use SphereMall\MS\Resources\Grapher\CorrelationsResource;
 use SphereMall\MS\Resources\Grapher\EntityFactorsResource;
 use SphereMall\MS\Resources\Grapher\FactorsResource;
@@ -26,24 +29,25 @@ use SphereMall\MS\Resources\Grapher\FactorValuesResource;
 use SphereMall\MS\Resources\LayoutContent\MenuItemsResource;
 use SphereMall\MS\Resources\Prices\PriceConfigurationsResource;
 use SphereMall\MS\Resources\Prices\ProductPriceConfigurationsResource;
-use SphereMall\MS\Resources\Products\AttributeDisplayTypesResource;
-use SphereMall\MS\Resources\Products\AttributeGroupsEntitiesResource;
-use SphereMall\MS\Resources\Products\AttributeTypesResource;
-use SphereMall\MS\Resources\Products\CatalogItemsResource;
-use SphereMall\MS\Resources\Products\EntitiesResource;
-use SphereMall\MS\Resources\Products\EntityAttributesResource;
-use SphereMall\MS\Resources\Products\MediaTypesResource;
-use SphereMall\MS\Resources\Products\OptionsResource;
-use SphereMall\MS\Resources\Products\AttributeGroupsResource;
-use SphereMall\MS\Resources\Products\AttributesResource;
-use SphereMall\MS\Resources\Products\AttributeValuesResource;
-use SphereMall\MS\Resources\Products\ProductVariantsResource;
-use SphereMall\MS\Resources\Products\UnitOfMeasureResource;
-use SphereMall\MS\Resources\Products\BrandsResource;
-use SphereMall\MS\Resources\Products\FunctionalNamesResource;
-use SphereMall\MS\Resources\Products\MediaResource;
-use SphereMall\MS\Resources\Products\ProductAttributeValuesResource;
-use SphereMall\MS\Resources\Products\ProductsResource;
+use SphereMall\MS\Resources\Entities\AttributeDisplayTypesResource;
+use SphereMall\MS\Resources\Entities\AttributeGroupsEntitiesResource;
+use SphereMall\MS\Resources\Entities\AttributeTypesResource;
+use SphereMall\MS\Resources\Entities\CatalogItemsResource;
+use SphereMall\MS\Resources\Entities\DocumentsResource;
+use SphereMall\MS\Resources\Entities\EntitiesResource;
+use SphereMall\MS\Resources\Entities\EntityAttributesResource;
+use SphereMall\MS\Resources\Entities\MediaTypesResource;
+use SphereMall\MS\Resources\Entities\OptionsResource;
+use SphereMall\MS\Resources\Entities\AttributeGroupsResource;
+use SphereMall\MS\Resources\Entities\AttributesResource;
+use SphereMall\MS\Resources\Entities\AttributeValuesResource;
+use SphereMall\MS\Resources\Entities\ProductVariantsResource;
+use SphereMall\MS\Resources\Entities\UnitOfMeasureResource;
+use SphereMall\MS\Resources\Entities\BrandsResource;
+use SphereMall\MS\Resources\Entities\FunctionalNamesResource;
+use SphereMall\MS\Resources\Entities\MediaResource;
+use SphereMall\MS\Resources\Entities\ProductAttributeValuesResource;
+use SphereMall\MS\Resources\Entities\ProductsResource;
 use SphereMall\MS\Resources\Shop\DealersResource;
 use SphereMall\MS\Resources\Shop\DiscountTypesResource;
 use SphereMall\MS\Resources\Shop\InvoicesResource;
@@ -83,7 +87,7 @@ trait ServiceInjector
     protected static $basket = null;
     #endregion
 
-    #region [Products service]
+    #region [Entities service]
     /**
      * @return AttributeDisplayTypesResource
      */
@@ -244,6 +248,24 @@ trait ServiceInjector
     {
         /** @var Client $this */
         return new CatalogItemsResource($this);
+    }
+
+    /**
+     * @return CategoriesResource
+     */
+    public function categories()
+    {
+        /** @var Client $this */
+        return new CategoriesResource($this);
+    }
+
+    /**
+     * @return EntityGroupsResource
+     */
+    public function entityGroups()
+    {
+        /** @var Client $this */
+        return new EntityGroupsResource($this);
     }
     #endregion
 
