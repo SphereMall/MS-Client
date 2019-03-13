@@ -13,6 +13,7 @@ use SphereMall\MS\Lib\Elastic\Builders\BodyBuilder;
 use SphereMall\MS\Lib\Elastic\Builders\FilterBuilder;
 use SphereMall\MS\Lib\Elastic\Builders\MSearch;
 use SphereMall\MS\Lib\Elastic\Builders\Search;
+use SphereMall\MS\Lib\Makers\ElasticFacetedMaker;
 use SphereMall\MS\Lib\Makers\ElasticSearchMaker;
 use SphereMall\MS\Resources\Resource;
 
@@ -82,6 +83,8 @@ class ElasticResource extends Resource
     {
         $handler = new \SphereMall\MS\Lib\Http\Request($this->client, $this);
         $response = $handler->handle('GET', $this->filter->getConfigs(), 'filter', $this->filter->getQuery());
+
+        $this->maker = new ElasticFacetedMaker();
 
         return $this->make($response);
     }

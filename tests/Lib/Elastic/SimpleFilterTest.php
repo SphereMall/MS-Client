@@ -22,6 +22,7 @@ use SphereMall\MS\Lib\Elastic\Queries\MustNotQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
 use SphereMall\MS\Lib\Elastic\Queries\TermQuery;
 use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
+use SphereMall\MS\Lib\Filters\Grid\GridFilter;
 use SphereMall\MS\Tests\Resources\SetUpResourceTest;
 
 class SimpleFilterTest extends SetUpResourceTest
@@ -42,11 +43,11 @@ class SimpleFilterTest extends SetUpResourceTest
             new BrandsConfig(true),
         ]);
         $filter->setParams([
-            new RangeParams('fields', 'price', ['gte' => 100]),
+//            new RangeParams('fields', 'price', ['gte' => 100]),
             //            new RangeParams('attributes', 'color', ['lt' => 1]),
             //            new FunctionalNamesParams([1, 2]),
-            //            new AttributesParams('color', [1]),
-            //            new AttributesParams('size', [2]),
+//                        new AttributesParams('color', [1]),
+//                        new AttributesParams('size', [2]),
         ]);
          //$filter->setKeyword("DryCare", ['title_fr']);
 //        $filter->setGroupBy("variantsCompound");
@@ -66,5 +67,31 @@ class SimpleFilterTest extends SetUpResourceTest
         $data = $this->client->elastic()->msearch([$body])->all();
 //        $data = $this->client->elastic()->search($body)->all();
         $r    = 1;
+    }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function testOldGrid()
+    {
+        $filter = new GridFilter();
+
+        $data = $this->client->grid()->filter($filter)->facets();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testFilter()
+    {
+        $filter = new FilterBuilder();
+
+        $filter->setConfigs([
+            new AttributesConfig(['aantal pasjes', 'afmeeting']),
+            new BrandsConfig(true),
+            new FunctionalNamesConfig(true),
+        ]);
+
+        $data = $this->client->elastic()->filter($filter)->facets();
     }
 }
