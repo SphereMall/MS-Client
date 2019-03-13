@@ -9,6 +9,7 @@
 namespace SphereMall\MS\Tests\Lib\Elastic;
 
 
+use SphereMall\MS\Entities\Product;
 use SphereMall\MS\Lib\Elastic\Builders\BodyBuilder;
 use SphereMall\MS\Lib\Elastic\Builders\FilterBuilder;
 use SphereMall\MS\Lib\Elastic\Builders\QueryBuilder;
@@ -23,6 +24,7 @@ use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
 use SphereMall\MS\Lib\Elastic\Queries\TermQuery;
 use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
 use SphereMall\MS\Lib\Filters\Grid\GridFilter;
+use SphereMall\MS\Lib\Helpers\ElasticSearchIndexHelper;
 use SphereMall\MS\Tests\Resources\SetUpResourceTest;
 
 class SimpleFilterTest extends SetUpResourceTest
@@ -80,7 +82,7 @@ class SimpleFilterTest extends SetUpResourceTest
     }
 
     /**
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function testFilter()
     {
@@ -92,6 +94,17 @@ class SimpleFilterTest extends SetUpResourceTest
             new FunctionalNamesConfig(true),
         ]);
 
-        $data = $this->client->elastic()->filter($filter)->facets();
+        $filter->setEntities(ElasticSearchIndexHelper::getIndexesByClasses([Product::class]));
+
+        $filter->setGroupBy("variantsCompound");
+
+        $filterData = $this->client->elastic()->filter($filter)->facets();
+
+        $body = new BodyBuilder();
+        $body->filter($filter);
+
+        $resultData = $this->client->elastic()->search($body)->all();
+
+        $r = 1;
     }
 }
