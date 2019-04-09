@@ -24,7 +24,7 @@ class ElasticIndexerResource extends Resource
      */
     public function getURI()
     {
-        return 'elasticsearch';
+        return 'elasticindexer';
     }
 
     /**
