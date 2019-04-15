@@ -19,7 +19,7 @@ use SphereMall\MS\Lib\Elastic\Queries\RangeQuery;
  *
  * @package SphereMall\MS\Lib\Elastic\Filter\Params
  */
-class RangeParams implements ElasticParamElementInterface, ElasticParamBuilderInterface
+class RangeParams extends BasicParams implements ElasticParamElementInterface, ElasticParamBuilderInterface
 {
     private $type   = null;
     private $field  = null;
@@ -28,15 +28,19 @@ class RangeParams implements ElasticParamElementInterface, ElasticParamBuilderIn
     /**
      * RangeParams constructor.
      *
-     * @param string $type
-     * @param string $field
-     * @param array  $params
+     * @param string      $type
+     * @param string      $field
+     * @param array       $params
+     * @param string|null $operator
+     *
+     * @throws \Exception
      */
-    public function __construct(string $type, string $field, array $params)
+    public function __construct(string $type, string $field, array $params, string $operator = null)
     {
         $this->type   = $type;
         $this->field  = $field;
         $this->params = $params;
+        $this->setOperator($operator);
     }
 
     /**
@@ -54,9 +58,9 @@ class RangeParams implements ElasticParamElementInterface, ElasticParamBuilderIn
     }
 
     /**
-     * @return ElasticBodyElementInterface
+     * @return array
      */
-    public function createFilter(): ElasticBodyElementInterface
+    public function createFilter(): array
     {
         if ($this->type == 'attributes') {
             $field = $this->field . "_attr.attributeValue.int";
@@ -64,6 +68,9 @@ class RangeParams implements ElasticParamElementInterface, ElasticParamBuilderIn
             $field = $this->field;
         }
 
-        return new RangeQuery($field, $this->params);
+        return [
+            new RangeQuery($field, $this->params),
+            $this->operator,
+        ];
     }
 }

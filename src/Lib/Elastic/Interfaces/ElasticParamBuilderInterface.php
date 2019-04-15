@@ -12,7 +12,7 @@ namespace SphereMall\MS\Lib\Elastic\Interfaces;
 interface ElasticParamBuilderInterface
 {
     /**
-     * @return ElasticBodyElementInterface
+     * @return array
      */
-    public function createFilter(): ElasticBodyElementInterface;
+    public function createFilter(): array;
 }

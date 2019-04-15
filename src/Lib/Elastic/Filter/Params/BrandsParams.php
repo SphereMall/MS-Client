@@ -19,18 +19,22 @@ use SphereMall\MS\Lib\Elastic\Queries\TermsQuery;
  *
  * @package SphereMall\MS\Lib\Elastic\Filter\Params
  */
-class BrandsParams implements ElasticParamElementInterface, ElasticParamBuilderInterface
+class BrandsParams extends BasicParams implements ElasticParamElementInterface, ElasticParamBuilderInterface
 {
     private $values = [];
 
     /**
      * BrandsParams constructor.
      *
-     * @param array $values
+     * @param array       $values
+     * @param string|null $operator
+     *
+     * @throws \Exception
      */
-    public function __construct(array $values)
+    public function __construct(array $values, string $operator = null)
     {
         $this->values = $values;
+        $this->setOperator($operator);
     }
 
     /**
@@ -46,8 +50,11 @@ class BrandsParams implements ElasticParamElementInterface, ElasticParamBuilderI
     /**
      * @return ElasticBodyElementInterface
      */
-    public function createFilter(): ElasticBodyElementInterface
+    public function createFilter(): array
     {
-        return new TermsQuery("brandId", $this->values);
+        return [
+            new TermsQuery("brandId", $this->values),
+            $this->operator,
+        ];
     }
 }
