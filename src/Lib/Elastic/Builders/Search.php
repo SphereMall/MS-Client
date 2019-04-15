@@ -15,9 +15,11 @@ use SphereMall\MS\Lib\Elastic\Aggregations\TermsAggregation;
 use SphereMall\MS\Lib\Elastic\Aggregations\TopHistAggregation;
 use SphereMall\MS\Lib\Elastic\Interfaces\SearchInterface;
 use SphereMall\MS\Lib\Elastic\Queries\MultiMatchQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MustNotQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
 use SphereMall\MS\Lib\Elastic\Sort\SortBuilder;
 use SphereMall\MS\Lib\Elastic\Sort\SortElement;
+use SphereMall\MS\Lib\Filters\FilterOperators;
 use SphereMall\MS\Lib\SortParams\ElasticSearch\ByFactorValues\Algorithms\MathSum;
 use SphereMall\MS\Lib\SortParams\ElasticSearch\ByFactorValues\Algorithms\MathSumWithFactor;
 
@@ -98,9 +100,10 @@ class Search implements SearchInterface
             return [];
         }
 
-        $result = [];
-        $query  = [];
-        $params = $this->body['filter']->getParams();
+        $result  = [];
+        $must    = [];
+        $mustNot = [];
+        $params  = $this->body['filter']->getParams();
 
         if (isset($params['groupBy']) && $params['groupBy']) {
             $result = $this->initGroupBy($params['factorValues'] ?? []);
@@ -115,21 +118,36 @@ class Search implements SearchInterface
             $this->body['sort'] = (new SortBuilder($sortEl))->toArray()['sort'];
         }
 
-        if ($params['entities']) {
+        if (isset($params['entities']) && $params['entities']) {
             $result['index'] = $params['entities'];
         }
 
         if (isset($params['keyword'])) {
-            $query[] = new MultiMatchQuery($params['keyword']['value'], $params['keyword']['fields']);
+            $must[] = new MultiMatchQuery($params['keyword']['value'], $params['keyword']['fields']);
         }
 
         foreach ($params['params'] ?? [] as $param) {
             /**@var \SphereMall\MS\Lib\Elastic\Interfaces\ElasticParamBuilderInterface $param * */
-            $query[] = $param->createFilter();
+            list($query, $operator) = $param->createFilter();
+
+            if ($operator == FilterOperators::IN) {
+                $must[] = $query;
+            } else {
+                $mustNot[] = $query;
+            }
         }
 
-        if ($query) {
-            $result['body']['query'] = (new QueryBuilder())->setMust(new MustQuery($query))->toArray();
+        if ($mustNot || $must) {
+
+            $query = new QueryBuilder();
+            if ($mustNot) {
+                $query->setMustNot(new MustNotQuery($mustNot));
+            }
+            if ($must) {
+                $query->setMust(new MustQuery($must));
+            }
+
+            $result['body']['query'] = $query->toArray();
         }
 
         return $result;

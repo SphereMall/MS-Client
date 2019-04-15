@@ -27,7 +27,7 @@ abstract class BasicParams
      * @return bool
      * @throws Exception
      */
-    protected function setOperator(string $operator): bool
+    protected function setOperator(?string $operator): bool
     {
         if (!$operator) {
             $this->operator = self::DEFAULT_OPERATOR;
