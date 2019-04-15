@@ -11,7 +11,9 @@ namespace SphereMall\MS\Lib\Elastic\Builders;
 
 use SphereMall\MS\Lib\Elastic\Interfaces\SearchInterface;
 use SphereMall\MS\Lib\Elastic\Queries\MultiMatchQuery;
+use SphereMall\MS\Lib\Elastic\Queries\MustNotQuery;
 use SphereMall\MS\Lib\Elastic\Queries\MustQuery;
+use SphereMall\MS\Lib\Filters\FilterOperators;
 
 /**
  * Class MSearch
@@ -103,8 +105,10 @@ class MSearch implements SearchInterface
      */
     private function getParamsFromFilter(FilterBuilder $filter)
     {
-        $result = [];
-        $query  = [];
+        $result  = [];
+        $must    = [];
+        $mustNot = [];
+
         $params = $filter->getParams();
 
         if ($params['entities']) {
@@ -112,16 +116,31 @@ class MSearch implements SearchInterface
         }
 
         if (isset($params['keyword'])) {
-            $query[] = new MultiMatchQuery($params['keyword']['value'], $params['keyword']['fields']);
+            $must[] = new MultiMatchQuery($params['keyword']['value'], $params['keyword']['fields']);
         }
 
         foreach ($params['params'] ?? [] as $param) {
-            /**@var \SphereMall\MS\Lib\Elastic\Interfaces\ElasticParamBuilderInterface $param**/
-            $query[] = $param->createFilter();
+            list($query, $operator) = $param->createFilter();
+
+            if ($operator == FilterOperators::IN) {
+                $must[] = $query;
+            } else {
+                $mustNot[] = $query;
+            }
+
         }
 
-        if ($query) {
-            $result['query'] = (new QueryBuilder())->setMust(new MustQuery($query))->toArray();
+        if ($mustNot || $must) {
+
+            $query = new QueryBuilder();
+            if ($mustNot) {
+                $query->setMustNot(new MustNotQuery($mustNot));
+            }
+            if ($must) {
+                $query->setMust(new MustQuery($must));
+            }
+
+            $result['query'] = $query->toArray();
         }
 
         return $result;

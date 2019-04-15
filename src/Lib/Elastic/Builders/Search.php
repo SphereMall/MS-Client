@@ -103,7 +103,8 @@ class Search implements SearchInterface
         $result  = [];
         $must    = [];
         $mustNot = [];
-        $params  = $this->body['filter']->getParams();
+
+        $params = $this->body['filter']->getParams();
 
         if (isset($params['groupBy']) && $params['groupBy']) {
             $result = $this->initGroupBy($params['factorValues'] ?? []);
@@ -127,7 +128,6 @@ class Search implements SearchInterface
         }
 
         foreach ($params['params'] ?? [] as $param) {
-            /**@var \SphereMall\MS\Lib\Elastic\Interfaces\ElasticParamBuilderInterface $param * */
             list($query, $operator) = $param->createFilter();
 
             if ($operator == FilterOperators::IN) {
