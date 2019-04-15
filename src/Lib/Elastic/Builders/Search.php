@@ -116,7 +116,7 @@ class Search implements SearchInterface
                 'script' => (new MathSumWithFactor($params['factorValues']))->getAlgorithm(),
             ]);
 
-            $this->body['sort'] = (new SortBuilder($sortEl))->toArray()['sort'];
+            $this->body['sort'] = (new SortBuilder($sortEl))->toArray();
         }
 
         if (isset($params['entities']) && $params['entities']) {
