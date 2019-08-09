@@ -11,7 +11,6 @@ namespace SphereMall\MS\Lib\Http;
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Promise;
 use SphereMall\MS\Client;
 use SphereMall\MS\Entities\Entity;
@@ -23,6 +22,8 @@ use SphereMall\MS\Resources\Resource as ServiceResource;
  */
 class Request
 {
+    use RequestMethods;
+
     #region [Properties]
     protected $withChannel = true;
     protected $multi;
@@ -106,27 +107,24 @@ class Request
         if ($body) {
             switch (strtolower($method)) {
                 case 'get' :
-                    $options['body'] = json_encode($body);
+                    $this->get($options, $body);
                     break;
 
                 case 'put':
-                    $options['body'] = http_build_query($body);
-                    $options['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
+                    $this->put($options, $body);
                     break;
 
                 case 'patch':
-                    $options['body'] = json_encode($body);
-                    $options['headers']['Content-Type'] = 'application/json';
+                    $this->patch($options, $body);
                     $method = 'PUT';
                     break;
 
                 case 'post':
-                    $options['headers']['Content-Type'] = 'application/x-www-form-urlencoded';
-                    $options['form_params'] = $body;
+                    $this->post($options, $body);
                     break;
 
                 case 'delete':
-                    $options['body'] = http_build_query($body);
+                    $this->delete($options, $body);
                     break;
             }
         }
