@@ -82,8 +82,10 @@ trait InteractsWithMedia
             $this->{$property} = [];
             return;
         }
-        foreach($this->media as $media) {
-            if($media->properties['mediaTypeId'] == $type) {
+        foreach($this->get('mediaEntities') ?? [] as $mediaEntity) {
+            $media = $this->media[$mediaEntity['id']] ?? null;
+            if(!empty($media) && $media->get('mediaTypeId') == $type) {
+                $media->orderNumber = $mediaEntity['orderNumber'] ?? null;
                 $mediaFiles[] = $media;
             }
         }
